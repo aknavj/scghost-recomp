@@ -1,7 +1,7 @@
 # StarCraft: Ghost (Release) - Xbox Recomp
 
 Static recompilation of the Xbox StarCraft: Ghost executable using
-[XboxRecomp](../xboxrecomp/README.md).
+[XboxRecomp](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/README.md).
 
 The project translates the original x86 game code into C and links it with
 the XboxRecomp runtime to produce a native Windows executable. It is a
@@ -32,7 +32,26 @@ Reported development-workspace results; not yet reverified in this checkout.
 - Git for Windows, including Git Bash.
 - Python 3.10 or newer with the Windows `py` launcher.
 - The Python dependencies required by XboxRecomp, including `capstone`.
+- [aknavj/xboxrecomp](https://github.com/aknavj/xboxrecomp/tree/impl-scghost)
+  checked out on the **`impl-scghost` branch**.
 - Your own legally obtained game executable and extracted data files.
+
+**The `impl-scghost` toolkit branch is required for correct behavior.** It
+contains the runtime and recompilation changes needed by this port; the default
+branch is not a supported substitute.
+
+To clone the required branch beside this project, run from the parent directory:
+
+```powershell
+git clone --branch impl-scghost https://github.com/aknavj/xboxrecomp.git xboxrecomp
+```
+
+For an existing clone of that fork, preserve any local changes before switching:
+
+```powershell
+git -C ..\xboxrecomp fetch origin
+git -C ..\xboxrecomp switch impl-scghost
+```
 
 Install Capstone for the Python interpreter used by the regeneration script:
 
@@ -222,7 +241,7 @@ visual correctness and performance need separate verification.
 
 ## Runtime Documentation
 
-- [XboxRecomp getting started](../xboxrecomp/docs/GETTING_STARTED.md).
-- [Native NV2A to D3D11 translation](../xboxrecomp/docs/runtime/nv2a-d3d11-backend.md).
-- [Input integration](../xboxrecomp/src/input/README.md).
-- [Audio implementation](../xboxrecomp/src/apu/README.md).
+- [XboxRecomp getting started](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/docs/GETTING_STARTED.md).
+- [Native NV2A to D3D11 translation](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/docs/runtime/nv2a-d3d11-backend.md).
+- [Input integration](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/src/input/README.md).
+- [Audio implementation](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/src/apu/README.md).
