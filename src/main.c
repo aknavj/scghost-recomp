@@ -1,5 +1,5 @@
 /**
- * YOUR_GAME_NAME - Recompiled Game Entry Point
+ * StarCraft Ghost (Release) - Recompiled Game Entry Point
  *
  * This is the Windows executable that hosts the recompiled game code.
  * It performs the following initialization sequence:
@@ -21,7 +21,7 @@
  *   - Customize the VEH handler for game-specific crash diagnosis
  *
  * XBE Details (fill in from xbe_parser output):
- *   Title:       YOUR_GAME_NAME
+ *   Title:       StarCraft Ghost (Release)
  *   Title ID:    0x00000002
  *   Base addr:   0x00010000
  *   Entry point: 0x001B3FBB
@@ -41,6 +41,10 @@
 
 /* xboxrecomp runtime headers */
 #include <xbox/xboxrecomp.h>
+#include "ohci.h"
+#include "xinput_xbox.h"
+#include "apu.h"
+#include "recomp_icall_feedback.h"
 
 /*
  * If xboxrecomp.h is not an umbrella header in your setup, include
@@ -64,6 +68,7 @@
 extern RECOMP_TLS uint32_t g_eax, g_ecx, g_edx, g_esp;
 extern RECOMP_TLS uint32_t g_ebx, g_esi, g_edi;
 extern RECOMP_TLS uint32_t g_seh_ebp;
+extern RECOMP_TLS uint32_t g_fs_base;
 /* x87 and SSE state. Global for the same reason the volatile GPRs are: one
  * guest routine can lift to several C functions, so a value written in one
  * body is read in the next. Defined in xbox_memory_layout.c like the rest of
@@ -82,6 +87,7 @@ extern ptrdiff_t g_xbox_mem_offset;
  * TODO: Set these from your xbe_parser output.
  * Run: py -3 -m tools.xbe_parser game/default.xbe
  */
+#define YOUR_GAME_TITLE         "StarCraft Ghost (Release)"
 #define YOUR_GAME_ENTRY_POINT   0x001B3FBB  /* XBE entry point VA */
 /* ── Forward declarations ──────────────────────────────────── */
 
@@ -210,20 +216,15 @@ static void print_guest_context(void *rip)
  * APU's registers were unmapped to be trapped, and every trap was then
  * declined and surfaced as an access violation on the first register
  * DirectSound touched.
- *
- * Declared rather than included so this does not depend on src/apu being on
- * the include path. */
-typedef struct MCPXAPUState MCPXAPUState;
-extern MCPXAPUState *mcpx_apu_init_standalone(uint8_t *ram_ptr);
+ */
 extern MCPXAPUState *g_apu_state;
 extern bool apu_hook_handle_mmio(PCONTEXT ctx, uintptr_t fault_addr,
                                  uint32_t fault_xbox_va, int is_write);
 
-/* The trapped span, matching what MemoryLayoutInit unmaps: the APU's own
- * 512 KB, not the whole MCPX aperture. AC'97 above it stays plain memory,
- * which is what the codec-ready bit needs. */
+/* Match the modeled main/VP MMIO span in MemoryLayoutInit. GP/EP scratch
+ * memory and AC'97 remain mapped for bulk copies and codec status. */
 #define APU_TRAP_BASE 0xFE800000u
-#define APU_TRAP_END  0xFE880000u
+#define APU_TRAP_END  0xFE830000u
 
 static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
 {
@@ -252,6 +253,11 @@ static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
             uint32_t xbox_va =
                 (uint32_t)(fault_addr - (uintptr_t)g_xbox_mem_offset);
 
+            if (xbox_OhciOwnsAddress(xbox_va)
+                    && xbox_OhciHandleMmio(ep->ContextRecord, xbox_va)) {
+                return EXCEPTION_CONTINUE_EXECUTION;
+            }
+
             if (xbox_va >= APU_TRAP_BASE && xbox_va < APU_TRAP_END
                     && apu_hook_handle_mmio(
                            ep->ContextRecord, fault_addr, xbox_va,
@@ -271,6 +277,11 @@ static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
             g_ebx, g_esi, g_edi);
         fprintf(stderr, "  Xbox VA of fault: 0x%08X\n",
             (uint32_t)(fault_addr - (uintptr_t)g_xbox_mem_offset));
+        fprintf(stderr, "  guest FS base: 0x%08X", g_fs_base);
+        if (g_fs_base >= 0x1000 && g_fs_base < 0x04000000)
+            fprintf(stderr, " fs:[4]=0x%08X",
+                    *(const uint32_t *)((uintptr_t)g_xbox_mem_offset + g_fs_base + 4));
+        fprintf(stderr, "\n");
         print_guest_context((void *)ep->ContextRecord->Rip);
 
         /*
@@ -315,12 +326,43 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     (void)nCmdShow;
 
     redirect_diagnostics();
-
+    _putenv_s("RECOMP_WINDOW_TITLE", YOUR_GAME_TITLE);
+    if (!getenv("RECOMP_AC97_READY"))
+        _putenv_s("RECOMP_AC97_READY", "1");
+    if (!getenv("RECOMP_DSP_ACK") && !getenv("RECOMP_APU_DSP_ACK")) {
+        if (_putenv_s("RECOMP_APU_DSP_ACK", "gp:0x810") != 0) {
+            fprintf(stderr, "[BOOT] failed to configure DSP passthrough mailbox\n");
+            return 1;
+        }
+    }
+    if (!getenv("RECOMP_USB"))
+        _putenv_s("RECOMP_USB", "1");
+    if (!getenv("RECOMP_USB_NDP"))
+        _putenv_s("RECOMP_USB_NDP", "2");
+    {
+        static const struct { const char *name, *value; } input_defaults[] = {
+            {"RECOMP_XINPUT_SLOT", "auto"},
+            {"RECOMP_KEYBOARD", "0"},
+            {"RECOMP_INPUT_THRESHOLD", "30"},
+            {"RECOMP_INPUT_DEADZONE_LEFT", "0"},
+            {"RECOMP_INPUT_DEADZONE_RIGHT", "0"},
+            {"RECOMP_INPUT_AXES", "0"}
+        };
+        for (size_t i = 0; i < sizeof(input_defaults) / sizeof(input_defaults[0]); i++) {
+            if (!getenv(input_defaults[i].name) &&
+                _putenv_s(input_defaults[i].name, input_defaults[i].value) != 0) {
+                fprintf(stderr, "[BOOT] failed to set %s\n", input_defaults[i].name);
+                return 1;
+            }
+        }
+    }
+    if (!getenv("RECOMP_PB_EXEC"))
+        _putenv_s("RECOMP_PB_EXEC", "1");
     /* Unbuffered output for immediate visibility during debugging */
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
 
-    printf("=== YOUR_GAME_NAME - Static Recompilation ===\n");
+    printf("=== %s - Static Recompilation ===\n", YOUR_GAME_TITLE);
     printf("Loading XBE...\n");
 
     /* Install VEH handler (first handler in chain) */
@@ -360,10 +402,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
      * Gated on the same variable that unmaps its registers, because the two
      * halves are useless apart: a trap with no model declines every access,
      * and a model nothing traps into never sees a register. The APU walks
-     * Xbox physical RAM to find voice buffers, so it gets the guest RAM
-     * base. */
+     * Xbox physical RAM to find voice tables and sample buffers. The mapper
+     * resolves both contiguous allocations and ordinary-RAM payloads. */
     if (getenv("RECOMP_AC97_READY")) {
-        g_apu_state = mcpx_apu_init_standalone((uint8_t *)xbox_GetMemoryBase());
+        g_apu_state = mcpx_apu_init_standalone_mapped(
+            (uint8_t *)((uintptr_t)g_xbox_mem_offset + XBOX_CONTIG_BASE),
+            xbox_DmaPhysicalPointer);
         fprintf(stderr, "[BOOT] emulated APU %s\n",
                 g_apu_state ? "up" : "FAILED to initialise");
     }
@@ -381,6 +425,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     /* Step 5: Initialize kernel bridge (thunk table in Xbox memory) */
     printf("Initializing kernel bridge...\n");
     xbox_kernel_bridge_init();
+    xbox_InputInit();
+    xbox_OhciInit();
+    xbox_Nv2aMirrorFence(0x002D2148u, 0x2Cu, 0x30u);
+    xbox_Nv2aFrameCounter(0x002D2148u, 0x1DE8u);
 
     /* Step 6: Initialize stack */
     g_esp = XBOX_STACK_TOP;
@@ -484,6 +532,7 @@ static BOOL load_xbe(const char *path, void **out_data, size_t *out_size)
 static void redirect_diagnostics(void)
 {
     char log_path[MAX_PATH];
+    char error_path[MAX_PATH];
     DWORD path_len = GetModuleFileNameA(NULL, log_path, MAX_PATH);
     char *last_slash;
     FILE *stream;
@@ -496,12 +545,16 @@ static void redirect_diagnostics(void)
         return;
 
     last_slash[1] = '\0';
+    if (strcpy_s(error_path, sizeof(error_path), log_path) != 0 ||
+        strcat_s(error_path, sizeof(error_path), "Ghost-errors.log") != 0)
+        return;
     if (strcat_s(log_path, sizeof(log_path), "Ghost-run.log") != 0)
         return;
 
     if (freopen_s(&stream, log_path, "w", stdout) != 0)
         return;
-    (void)freopen_s(&stream, log_path, "a", stderr);
+    if (freopen_s(&stream, error_path, "w", stderr) != 0)
+        fprintf(stdout, "[BOOT] could not redirect stderr\n");
 }
 
 /* Console entry point (for debugging -- lets you see printf output) */

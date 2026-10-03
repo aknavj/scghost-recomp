@@ -1,6 +1,6 @@
 # Build artifacts
 build/
-build-current/
+build-*/
 out/
 bin/
 *.obj
@@ -27,10 +27,13 @@ Makefile
 *.sln
 Debug/
 Release/
+RelWithDebInfo/
+MinSizeRel/
 x64/
 
 # Generated recompiled code (regenerate from XBE with the recomp pipeline)
 src/recomp/gen/
+src/game/recomp/gen/
 
 # Game files (user must provide their own legally-owned copies)
 game/
@@ -42,6 +45,10 @@ game/
 run.log
 xbox_kernel.log
 Ghost-run.log
+Ghost-errors.log
+
+# Default framebuffer capture
+framebuffer.bmp
 
 # IDE
 .vscode/

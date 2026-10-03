@@ -47,6 +47,20 @@ typedef void (*recomp_func_t)(void);
 
 extern uint32_t g_eax;
 extern ptrdiff_t g_xbox_mem_offset;
+extern void sub_00320890(void);
+extern void sub_00320B70(void);
+extern void sub_00328920(void);
+extern void sub_00328AE0(void);
+extern void sub_00328D30(void);
+extern void sub_00359F12(void);
+extern void sub_0035A64F(void);
+extern void sub_0035DB98(void);
+extern void sub_0035D763(void);
+extern void sub_0035D7B5(void);
+extern void sub_0035E1B7(void);
+extern void sub_0035EFF8(void);
+extern void sub_00361256(void);
+extern void sub_00210FA0(void);
 
 /* ── Manual function overrides ─────────────────────────────── */
 
@@ -86,6 +100,20 @@ extern ptrdiff_t g_xbox_mem_offset;
  */
 recomp_func_t recomp_lookup_manual(uint32_t xbox_va)
 {
+    if (xbox_va == 0x00210FA0u) return sub_00210FA0;
+    if (xbox_va == 0x00359F12u) return sub_00359F12;
+    if (xbox_va == 0x0035A64Fu) return sub_0035A64F;
+    if (xbox_va == 0x0035DB98u) return sub_0035DB98;
+    if (xbox_va == 0x0035D763u) return sub_0035D763;
+    if (xbox_va == 0x0035D7B5u) return sub_0035D7B5;
+    if (xbox_va == 0x0035E1B7u) return sub_0035E1B7;
+    if (xbox_va == 0x0035EFF8u) return sub_0035EFF8;
+    if (xbox_va == 0x00361256u) return sub_00361256;
+    if (xbox_va == 0x00320890u) return sub_00320890;
+    if (xbox_va == 0x00320B70u) return sub_00320B70;
+    if (xbox_va == 0x00328920u) return sub_00328920;
+    if (xbox_va == 0x00328AE0u) return sub_00328AE0;
+    if (xbox_va == 0x00328D30u) return sub_00328D30;
     /*
      * TODO: Add your overrides here. Examples:
      *

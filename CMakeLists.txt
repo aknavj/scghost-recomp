@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 # ============================================================================
-# YOUR_GAME_NAME - Static Recompilation
+# StarCraft Ghost (Release) - Static Recompilation
 #
 # Copy this template to your game project root and customize:
 #   1. Change the project name below
@@ -43,13 +43,22 @@ add_subdirectory(${XBOXRECOMP_DIR} ${CMAKE_BINARY_DIR}/xboxrecomp)
 # ── Recompiled game executable ──────────────────────────────────
 
 # Collect generated recompiled code.
-# The recomp pipeline outputs files into src/recomp/gen/.
-# With --split 1000, you get gen_0000.c, gen_0001.c, etc.
+# The recomp pipeline outputs files into src/game/recomp/gen/.
+# With --split 1000, you get recomp_0000.c, recomp_0001.c, etc.
 # CONFIGURE_DEPENDS so re-running the recompiler picks up added/removed files
 # without a manual re-configure. A plain GLOB is evaluated once at configure
 # time, so a newly generated file (an extra chunk, recomp_stubs_unresolved.c)
 # is silently left out of the build and shows up as unresolved externals.
-file(GLOB RECOMP_GEN_SOURCES CONFIGURE_DEPENDS "src/recomp/gen/*.c")
+set(RECOMP_GEN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/game/recomp/gen")
+file(GLOB RECOMP_GEN_SOURCES CONFIGURE_DEPENDS "${RECOMP_GEN_DIR}/*.c")
+if(NOT RECOMP_GEN_SOURCES OR
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_dispatch.c" OR
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_funcs.h" OR
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_types.h")
+    message(FATAL_ERROR
+        "Recompiled game sources are missing or incomplete. "
+        "Run ./regen.sh from the scghost directory in Git Bash, then configure again.")
+endif()
 
 # Core game sources
 set(GAME_SOURCES
@@ -62,9 +71,9 @@ set(GAME_SOURCES
 
 # The recomp pipeline also generates a dispatch header and function declarations.
 # These are included by the generated .c files:
-#   src/recomp/gen/recomp_funcs.h    - extern declarations for all recompiled functions
-#   src/recomp/recomp_dispatch.h     - binary search dispatch table
-#   src/recomp/recomp_types.h        - register model, ICALL macros, MEM helpers
+#   src/game/recomp/gen/recomp_funcs.h    - recompiled function declarations
+#   src/game/recomp/gen/recomp_dispatch.c - function dispatch table
+#   src/game/recomp/gen/recomp_types.h    - register model, ICALL macros, MEM helpers
 
 add_executable(${PROJECT_NAME} WIN32
     ${GAME_SOURCES}
@@ -78,7 +87,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE xboxrecomp)
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/recomp
+    ${RECOMP_GEN_DIR}
     ${XBOXRECOMP_DIR}/include
 )
 
