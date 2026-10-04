@@ -358,6 +358,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     }
     if (!getenv("RECOMP_PB_EXEC"))
         _putenv_s("RECOMP_PB_EXEC", "1");
+    if (!getenv("RECOMP_NV2A_NATIVE_FENCES")
+            && _putenv_s("RECOMP_NV2A_NATIVE_FENCES", "1") != 0) {
+        fprintf(stderr, "[BOOT] Cannot configure native GPU command completion\n");
+        return EXIT_FAILURE;
+    }
+    if (xbox_Nv2aNativeFencesEnabled()
+            && !getenv("RECOMP_VBLANK") && _putenv_s("RECOMP_VBLANK", "1") != 0) {
+        fprintf(stderr, "[BOOT] Cannot enable native GPU vblank delivery\n");
+        return EXIT_FAILURE;
+    }
     /* Unbuffered output for immediate visibility during debugging */
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
@@ -427,8 +437,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     xbox_kernel_bridge_init();
     xbox_InputInit();
     xbox_OhciInit();
-    xbox_Nv2aMirrorFence(0x002D2148u, 0x2Cu, 0x30u);
-    xbox_Nv2aFrameCounter(0x002D2148u, 0x1DE8u);
+    if (xbox_Nv2aNativeFencesEnabled()) {
+        if (xbox_Nv2aSoftwareMethodHandler(0x002C99B0u, 0x002D3D78u) < 0)
+            return EXIT_FAILURE;
+    } else {
+        xbox_Nv2aMirrorFence(0x002D2148u, 0x2Cu, 0x30u);
+        xbox_Nv2aFrameCounter(0x002D2148u, 0x1DE8u);
+    }
 
     /* Step 6: Initialize stack */
     g_esp = XBOX_STACK_TOP;
