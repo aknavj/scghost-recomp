@@ -11,18 +11,16 @@ or playable performance.
 
 ## Port Progress
 
-Reported development-workspace results; not yet reverified in this checkout.
-
 | Feature | Status | Notes |
 | --- | --- | --- |
-| Video playback | Verified | Visible, changing guest-decoded video; progression past splash confirmed. |
-| Menu scene | Verified | Upright character, room and logo effects visually confirmed. |
-| Controller input | Verified | Physical-controller input confirmed; full menu navigation remains unverified. |
-| Loading screen | Partial | Mission briefing reached; loading-background texture repair remains unverified. |
-| Gameplay | Partial | User-confirmed execution; later exits on unsupported texture shader program `0x2`. |
-| Audio | Partial | Intro-movie sound confirmed; sustained gameplay audio and DSP effects unverified. |
-| Rendering | Partial | Native hardware rendering works; shader/state compatibility gaps remain. |
-| Performance | Needs work | Debug menu measured roughly 5.4-5.8 FPS; repaired optimized build still needs measurement. |
+| Video playback | Partial | Videos play; occasional intro tearing remains. |
+| Menu scene | Verified | Character, room and logo effects display correctly. |
+| Controller input | Verified | Physical controller works; full menu navigation verified. |
+| Loading screen | Partial | Mission briefing reached; background texture unverified. |
+| Gameplay | Partial | Gameplay runs, but renderer failures still cause exits. |
+| Audio | Partial | Intro and gameplay sound work; occasional crackles and incomplete DSP effects remain. |
+| Rendering | Partial | Hardware rendering works; texture and shader support remains incomplete. |
+| Performance | Needs work | Debug menu: about 10-15 FPS; sustained optimized performance unverified. |
 
 ## Requirements
 
@@ -150,22 +148,6 @@ generated code chunks to 70. Its large size reflects that rechunking as well
 as the code changes. It must match the generated baseline; it is not a
 general-purpose patch for arbitrary XBE versions or toolkit output.
 
-Apply it only once. If validation fails, check whether the patch is already
-applied or the baseline differs. Do not force partial application.
-
-Before regenerating an already patched tree, reverse the patch from the
-project root:
-
-```bash
-git apply --reverse --check patches/generated.patch
-git apply --reverse --whitespace=nowarn patches/generated.patch
-bash regen.sh
-bash patch.sh
-```
-
-Reversal also removes patch-added files that regeneration might otherwise
-leave behind. If the reverse check fails, preserve any local edits and resolve
-the mismatch before regenerating.
 
 ## Configure and Build
 
@@ -179,50 +161,6 @@ cmake --build build-xr --config Release --parallel 2
 
 CMake builds the XboxRecomp libraries and the `Ghost` executable. Generated
 source files are large, so compilation can take considerable time.
-
-For subsequent builds:
-
-```powershell
-cmake --build build-xr --config Release --parallel 2
-```
-
-If regeneration or patching changes the chunk list, explicitly reconfigure
-before building to refresh the Visual Studio project:
-
-```powershell
-cmake -S . -B build-xr
-cmake --build build-xr --config Release --parallel 2
-```
-
-`XBOXRECOMP_DIR` is a CMake cache path and defaults to the sibling toolkit.
-Changing it does not change the sibling path used by `regen.sh`; keep both
-configured consistently if you move the toolkit.
-
-## Run and Diagnose
-
-Start the Release executable from **PowerShell**:
-
-```powershell
-& .\build-xr\Release\Ghost.exe
-```
-
-Standard output and error are redirected to `Ghost-run.log` and
-`Ghost-errors.log` beside the executable. Startup initializes guest memory,
-kernel services, input and the NV2A command-stream path.
-
-The startup code supplies diagnostic audio defaults, including AC97 readiness
-and DSP acknowledgement. These are bring-up aids, not complete DSP emulation.
-Existing environment settings generally take precedence over those defaults.
-
-For framebuffer captures:
-
-```powershell
-New-Item -ItemType Directory -Force C:\captures | Out-Null
-$env:RECOMP_FB_CAPTURE = 'C:\captures\framebuffer.bmp'
-& .\build-xr\Release\Ghost.exe
-```
-
-Press **F12** in the framebuffer window to capture its displayed image.
 
 ## Troubleshooting
 

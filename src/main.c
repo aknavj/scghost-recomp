@@ -37,6 +37,9 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <errno.h>
+#include <io.h>
+#include <share.h>
 #include "game_paths.h"
 
 /* xboxrecomp runtime headers */
@@ -544,13 +547,44 @@ static BOOL load_xbe(const char *path, void **out_data, size_t *out_size)
     return TRUE;
 }
 
+static BOOL redirect_diagnostic_stream(FILE *destination, const char *path)
+{
+    FILE *source = _fsopen(path, "w", _SH_DENYWR);
+    if (!source) {
+        fprintf(stderr, "[BOOT] could not open diagnostic log '%s' (errno %d)\n",
+                path, errno);
+        return FALSE;
+    }
+    if (_fileno(destination) < 0) {
+        FILE *initialized;
+        if (freopen_s(&initialized, "NUL", "w", destination) != 0) {
+            fclose(source);
+            OutputDebugStringA("[BOOT] could not initialize diagnostic stream\n");
+            return FALSE;
+        }
+    }
+    if (fflush(destination) != 0 ||
+        _dup2(_fileno(source), _fileno(destination)) != 0) {
+        int error = errno;
+        fclose(source);
+        fprintf(stderr, "[BOOT] could not redirect diagnostic log '%s' (errno %d)\n",
+                path, error);
+        return FALSE;
+    }
+    if (fclose(source) != 0) {
+        fprintf(stderr, "[BOOT] could not close duplicate log stream '%s' (errno %d)\n",
+                path, errno);
+        return FALSE;
+    }
+    return TRUE;
+}
+
 static void redirect_diagnostics(void)
 {
     char log_path[MAX_PATH];
     char error_path[MAX_PATH];
     DWORD path_len = GetModuleFileNameA(NULL, log_path, MAX_PATH);
     char *last_slash;
-    FILE *stream;
 
     if (path_len == 0 || path_len >= MAX_PATH)
         return;
@@ -566,9 +600,9 @@ static void redirect_diagnostics(void)
     if (strcat_s(log_path, sizeof(log_path), "Ghost-run.log") != 0)
         return;
 
-    if (freopen_s(&stream, log_path, "w", stdout) != 0)
+    if (!redirect_diagnostic_stream(stdout, log_path))
         return;
-    if (freopen_s(&stream, error_path, "w", stderr) != 0)
+    if (!redirect_diagnostic_stream(stderr, error_path))
         fprintf(stdout, "[BOOT] could not redirect stderr\n");
 }
 

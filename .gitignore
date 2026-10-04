@@ -12,6 +12,7 @@ bin/
 *.pdb
 *.ilk
 *.exp
+*.res
 
 # CMake
 CMakeCache.txt
