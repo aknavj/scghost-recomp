@@ -1,0 +1,75 @@
+diff --git a/src/game/recomp/gen/recomp_0063.c b/src/game/recomp/gen/recomp_0063.c
+index 4d80487..b47e34e 100644
+--- a/src/game/recomp/gen/recomp_0063.c
++++ b/src/game/recomp/gen/recomp_0063.c
+@@ -2314,7 +2314,7 @@ loc_002F3CEC: ;
+ void sub_002F3CFF(void)
+ {
+     uint32_t ebp = 0;
+-    ebp = g_ebp;  /* prologue saves caller's frame */
++    ebp = g_ebp;  /* frameless: caller's frame */
+     int _flags = 0; /* fallback flag var */
+     uint32_t _fa = 0, _fb = 0;
+     int32_t _fas = 0, _fbs = 0;
+@@ -2330,16 +2330,12 @@ void sub_002F3CFF(void)
+ loc_002F3CFF: ;
+     PUSH32(esp, ebp);
+     ebp = esp + -112;
+-    g_ebp = ebp;
+-    g_seh_ebp = ebp;
+     _fb = (uint32_t)(0xD4) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* sub source, before the write */
+     esp = esp - 0xD4;
+     _fa = (uint32_t)(esp) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* sub result */
+     PUSH32(esp, ebx);
+     PUSH32(esp, esi);
+     ecx = ebp + 0x78;
+-    g_ebp = ebp; /* frame stays current across calls */
+-    g_seh_ebp = ebp;
+     PUSH32(esp, 0x002F3D14u); RECOMP_ABI_CALL(0x002F1709u, sub_002F1709); /* call 0x002F1709 */
+ 
+ loc_002F3D14: ;
+@@ -2379,8 +2375,6 @@ loc_002F3D3E: ;
+     PUSH32(esp, eax);
+     eax = esi + 0x20;
+     PUSH32(esp, eax);
+-    g_ebp = ebp; /* frame stays current across calls */
+-    g_seh_ebp = ebp;
+     PUSH32(esp, 0x002F3D4Fu); RECOMP_ABI_CALL(0x002F4D7Cu, sub_002F4D7C); /* call 0x002F4D7C */
+ 
+ loc_002F3D4F: ;
+@@ -2548,8 +2542,6 @@ loc_002F3E20: ;
+     eax = esi + 0x20;
+     PUSH32(esp, eax);
+     PUSH32(esp, MEM32(ebx + 0x40));
+-    g_ebp = ebp; /* frame stays current across calls */
+-    g_seh_ebp = ebp;
+     PUSH32(esp, 0x002F3E47u); RECOMP_ABI_CALL(0x002F17E1u, sub_002F17E1); /* call 0x002F17E1 */
+ 
+ loc_002F3E47: ;
+@@ -2710,8 +2702,6 @@ loc_002F3F2B: ;
+ 
+ loc_002F3F2E: ;
+     ecx = ebp + 0x78;
+-    g_ebp = ebp; /* frame stays current across calls */
+-    g_seh_ebp = ebp;
+     PUSH32(esp, 0x002F3F36u); RECOMP_ABI_CALL(0x002F172Eu, sub_002F172E); /* call 0x002F172E */
+ 
+ loc_002F3F36: ;
+@@ -5734,7 +5724,7 @@ loc_002F4CB9: ;
+ 
+ /**
+  * sub_002F4CBF
+- * Original: 0x002F4CBF - 0x002F4CD5 (22 bytes, 4 insns)
++ * Original: 0x002F4CBF - 0x002F4CCA (11 bytes, 2 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */
+@@ -15747,7 +15737,7 @@ loc_002F7A48: ;
+ 
+ /**
+  * sub_002F7A4D
+- * Original: 0x002F7A4D - 0x002F7A63 (22 bytes, 4 insns)
++ * Original: 0x002F7A4D - 0x002F7A58 (11 bytes, 2 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */

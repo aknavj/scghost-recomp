@@ -1,0 +1,918 @@
+diff --git a/src/game/recomp/gen/recomp_0057.c b/src/game/recomp/gen/recomp_0057.c
+index d7741fe..879385a 100644
+--- a/src/game/recomp/gen/recomp_0057.c
++++ b/src/game/recomp/gen/recomp_0057.c
+@@ -88,7 +88,7 @@ loc_002BCAFA: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -144,7 +144,7 @@ loc_002BCB08: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -197,7 +197,7 @@ loc_002BCB16: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -247,7 +247,7 @@ loc_002BCB24: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -294,7 +294,7 @@ loc_002BCB32: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -338,7 +338,7 @@ loc_002BCB40: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -377,7 +377,7 @@ loc_002BCB42: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -413,7 +413,7 @@ loc_002BCB4D: ;
+     g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
+ 
+     eax = 0x3D1150;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -476,7 +476,7 @@ loc_002BCB78: ;
+     g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
+ 
+     eax = 0x3D1184;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -509,7 +509,7 @@ loc_002BCB83: ;
+     g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
+ 
+     eax = 0x3D1184;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -608,7 +608,7 @@ loc_002BCBE8: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D1200;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -641,7 +641,7 @@ loc_002BCBF3: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D1200;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -692,7 +692,7 @@ loc_002BCC18: ;
+     g_seh_ebp = ebp; sub_002478C0(); return; /* tail jmp 0x002478C0 */
+ 
+     eax = 0x3D122C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -741,7 +741,7 @@ loc_002BCC38: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D1284;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -784,7 +784,7 @@ loc_002BCC58: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D12B0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -836,7 +836,7 @@ loc_002BCC78: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D12DC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -969,7 +969,7 @@ loc_002BCD3B: ;
+     g_seh_ebp = ebp; sub_000E9A70(); return; /* tail jmp 0x000E9A70 */
+ 
+     eax = 0x3D13E0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1138,7 +1138,7 @@ loc_002BCE1B: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D1558;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1165,7 +1165,7 @@ loc_002BCE26: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D1558;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1252,7 +1252,7 @@ loc_002BCE88: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D15CC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1342,7 +1342,7 @@ loc_002BCEE8: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D1664;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1668,7 +1668,7 @@ loc_002BD0CB: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D1960;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1768,7 +1768,7 @@ loc_002BD138: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D19F8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1929,13 +1929,13 @@ loc_002BD21B: ;
+     g_seh_ebp = ebp; sub_00249E10(); return; /* tail jmp 0x00249E10 */
+ 
+     eax = 0x3D1B68;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = ebp + -68;
+     g_seh_ebp = ebp; sub_000E9A70(); return; /* tail jmp 0x000E9A70 */
+ 
+     eax = 0x3D1B8C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1971,7 +1971,7 @@ loc_002BD230: ;
+     g_seh_ebp = ebp; sub_000E9A70(); return; /* tail jmp 0x000E9A70 */
+ 
+     eax = 0x3D1B8C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2067,7 +2067,7 @@ loc_002BD29B: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D1C10;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2105,7 +2105,7 @@ loc_002BD2A6: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D1C10;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2140,7 +2140,7 @@ loc_002BD2AE: ;
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+ 
+     eax = 0x3D1C10;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2277,7 +2277,7 @@ loc_002BD35B: ;
+     g_seh_ebp = ebp; sub_00257E20(); return; /* tail jmp 0x00257E20 */
+ 
+     eax = 0x3D1CF0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2348,7 +2348,7 @@ loc_002BD38B: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D1D24;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2391,7 +2391,7 @@ loc_002BD399: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D1D24;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2449,7 +2449,7 @@ loc_002BD3CB: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D1D58;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2476,7 +2476,7 @@ loc_002BD3D6: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D1D58;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2534,7 +2534,7 @@ loc_002BD404: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D1DA8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2570,7 +2570,7 @@ loc_002BD410: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D1DA8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2709,7 +2709,7 @@ loc_002BD4C4: ;
+     g_seh_ebp = ebp; sub_0025AB90(); return; /* tail jmp 0x0025AB90 */
+ 
+     eax = 0x3D1F28;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = ebp + -80;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+@@ -2729,7 +2729,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2762,7 +2762,7 @@ loc_002BD4C6: ;
+     g_seh_ebp = ebp; sub_0025AB90(); return; /* tail jmp 0x0025AB90 */
+ 
+     eax = 0x3D1F28;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = ebp + -80;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+@@ -2782,7 +2782,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2812,7 +2812,7 @@ loc_002BD4CE: ;
+     g_seh_ebp = ebp; sub_0025AB90(); return; /* tail jmp 0x0025AB90 */
+ 
+     eax = 0x3D1F28;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = ebp + -80;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+@@ -2832,7 +2832,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2876,7 +2876,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2917,7 +2917,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2955,7 +2955,7 @@ loc_002BD4F9: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -2990,7 +2990,7 @@ loc_002BD504: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3020,7 +3020,7 @@ loc_002BD506: ;
+     g_seh_ebp = ebp; sub_0025A630(); return; /* tail jmp 0x0025A630 */
+ 
+     eax = 0x3D1F6C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3121,7 +3121,7 @@ loc_002BD59D: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3172,7 +3172,7 @@ loc_002BD59D: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3220,7 +3220,7 @@ loc_002BD59D: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3265,7 +3265,7 @@ loc_002BD59D: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3307,7 +3307,7 @@ loc_002BD59D: ;
+     esp += 4; return; /* ret */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -3344,7 +3344,7 @@ loc_002BD59F: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D202C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -5880,7 +5880,7 @@ loc_002BD788: ;
+     g_seh_ebp = ebp; sub_0025AB90(); return; /* tail jmp 0x0025AB90 */
+ 
+     eax = 0x3D2170;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -5916,7 +5916,7 @@ loc_002BD790: ;
+     g_seh_ebp = ebp; sub_0025AB90(); return; /* tail jmp 0x0025AB90 */
+ 
+     eax = 0x3D2170;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6078,7 +6078,7 @@ loc_002BD7B8: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6206,7 +6206,7 @@ loc_002BD7C3: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6328,7 +6328,7 @@ loc_002BD7CE: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6444,7 +6444,7 @@ loc_002BD7D9: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6554,7 +6554,7 @@ loc_002BD7E4: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6658,7 +6658,7 @@ loc_002BD7EF: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6756,7 +6756,7 @@ loc_002BD7FA: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6848,7 +6848,7 @@ loc_002BD808: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -6934,7 +6934,7 @@ loc_002BD816: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7014,7 +7014,7 @@ loc_002BD824: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7088,7 +7088,7 @@ loc_002BD832: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7156,7 +7156,7 @@ loc_002BD840: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7218,7 +7218,7 @@ loc_002BD84E: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7274,7 +7274,7 @@ loc_002BD85C: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7324,7 +7324,7 @@ loc_002BD86A: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7368,7 +7368,7 @@ loc_002BD878: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7406,7 +7406,7 @@ loc_002BD886: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7438,7 +7438,7 @@ loc_002BD894: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2224;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7506,7 +7506,7 @@ loc_002BD8B8: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2268;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7548,7 +7548,7 @@ loc_002BD8C3: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2268;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7584,7 +7584,7 @@ loc_002BD8CE: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2268;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7614,7 +7614,7 @@ loc_002BD8D9: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2268;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7662,7 +7662,7 @@ loc_002BD8F8: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D2294;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7711,7 +7711,7 @@ loc_002BD918: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D22C0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7855,7 +7855,7 @@ loc_002BD9BB: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D23B0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7899,7 +7899,7 @@ loc_002BD9C6: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D23B0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7937,7 +7937,7 @@ loc_002BD9D1: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D23B0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -7993,7 +7993,7 @@ loc_002BD9F8: ;
+     g_seh_ebp = ebp; sub_0025F750(); return; /* tail jmp 0x0025F750 */
+ 
+     eax = 0x3D23DC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8453,7 +8453,7 @@ loc_002BDB57: ;
+     g_seh_ebp = ebp; sub_000ADA70(); return; /* tail jmp 0x000ADA70 */
+ 
+     eax = 0x3D2534;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8530,7 +8530,7 @@ loc_002BDB98: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D258C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8566,7 +8566,7 @@ loc_002BDBA3: ;
+     g_seh_ebp = ebp; sub_0025DCA0(); return; /* tail jmp 0x0025DCA0 */
+ 
+     eax = 0x3D258C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8614,13 +8614,13 @@ loc_002BDBCB: ;
+     g_seh_ebp = ebp; sub_002621B0(); return; /* tail jmp 0x002621B0 */
+ 
+     eax = 0x3D25B8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = MEM32(ebp + -16);
+     g_seh_ebp = ebp; sub_00261A90(); return; /* tail jmp 0x00261A90 */
+ 
+     eax = 0x3D2600;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8656,7 +8656,7 @@ loc_002BDBE0: ;
+     g_seh_ebp = ebp; sub_00261A90(); return; /* tail jmp 0x00261A90 */
+ 
+     eax = 0x3D2600;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8838,7 +8838,7 @@ loc_002BDCA7: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8898,7 +8898,7 @@ loc_002BDCAF: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -8952,7 +8952,7 @@ loc_002BDCBA: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9000,7 +9000,7 @@ loc_002BDCC5: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9042,7 +9042,7 @@ loc_002BDCD0: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9078,7 +9078,7 @@ loc_002BDCDB: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9108,7 +9108,7 @@ loc_002BDCE6: ;
+     g_seh_ebp = ebp; sub_0025D760(); return; /* tail jmp 0x0025D760 */
+ 
+     eax = 0x3D2734;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9174,7 +9174,7 @@ loc_002BDD28: ;
+     g_seh_ebp = ebp; sub_00264300(); return; /* tail jmp 0x00264300 */
+ 
+     eax = 0x3D2794;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9205,7 +9205,7 @@ loc_002BDD30: ;
+     g_seh_ebp = ebp; sub_00264300(); return; /* tail jmp 0x00264300 */
+ 
+     eax = 0x3D2794;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9233,7 +9233,7 @@ loc_002BDD38: ;
+     g_seh_ebp = ebp; sub_00264300(); return; /* tail jmp 0x00264300 */
+ 
+     eax = 0x3D2794;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9321,7 +9321,7 @@ loc_002BDD98: ;
+     g_seh_ebp = ebp; sub_002621B0(); return; /* tail jmp 0x002621B0 */
+ 
+     eax = 0x3D2834;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9405,7 +9405,7 @@ loc_002BDDF8: ;
+     g_seh_ebp = ebp; sub_0025A630(); return; /* tail jmp 0x0025A630 */
+ 
+     eax = 0x3D28A8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -9457,7 +9457,7 @@ loc_002BDE18: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D28D4;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */

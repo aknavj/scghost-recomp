@@ -1,0 +1,3049 @@
+diff --git a/src/game/recomp/gen/recomp_0015.c b/src/game/recomp/gen/recomp_0015.c
+index 0da5781..d932610 100644
+--- a/src/game/recomp/gen/recomp_0015.c
++++ b/src/game/recomp/gen/recomp_0015.c
+@@ -240,7 +240,7 @@ loc_000BF4F8: ;
+     { double _t = fp_top(); fp_top() = fp_st1(); fp_st1() = _t; } /* fxch st(1) */
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+-    if ((g_fp_cmp > 0 && g_fp_cmp != 2) /* fcompi */) goto loc_000BF509; /* ja: above (unsigned >) */
++    if ((g_fp_cmp > 0) /* fcompi */) goto loc_000BF509; /* ja: above (unsigned >) */
+ 
+ loc_000BF504: ;
+     eax = 0; /* xor self */
+@@ -318,7 +318,7 @@ loc_000BF54C: ;
+     { double _t = fp_top(); fp_top() = fp_st1(); fp_st1() = _t; } /* fxch st(1) */
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+-    if ((g_fp_cmp > 0 && g_fp_cmp != 2) /* fcompi */) goto loc_000BF55E; /* ja: above (unsigned >) */
++    if ((g_fp_cmp > 0) /* fcompi */) goto loc_000BF55E; /* ja: above (unsigned >) */
+ 
+ loc_000BF558: ;
+     eax = 0; /* xor self */
+@@ -1731,7 +1731,7 @@ loc_000BFA61: ;
+     PUSH32(esp, edi);
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+-    if ((g_fp_cmp <= 0 || g_fp_cmp == 2) /* fcompi */) goto loc_000BFA88; /* jbe: below or equal (unsigned <=) */
++    if ((g_fp_cmp <= 0) /* fcompi */) goto loc_000BFA88; /* jbe: below or equal (unsigned <=) */
+ 
+ loc_000BFA76: ;
+     edx = MEM32(esi);
+@@ -1768,7 +1768,7 @@ loc_000BFAA4: ;
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+     POP32(esp, esi);
+-    if ((g_fp_cmp <= 0 || g_fp_cmp == 2) /* fcompi */) goto loc_000BFABA; /* jbe: below or equal (unsigned <=) */
++    if ((g_fp_cmp <= 0) /* fcompi */) goto loc_000BFABA; /* jbe: below or equal (unsigned <=) */
+ 
+ loc_000BFAB2: ;
+     eax = 1;
+@@ -4252,7 +4252,7 @@ loc_000C0424: ;
+     PUSH32(esp, 0x396028);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C043Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C043Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C043E: ;
+     edx = MEM32(0x42DC94);
+@@ -4320,7 +4320,7 @@ loc_000C04CF: ;
+     PUSH32(esp, 0x39601C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C04E9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C04E9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C04E9: ;
+     edx = MEM32(0x42DC94);
+@@ -4388,7 +4388,7 @@ loc_000C057A: ;
+     PUSH32(esp, 0x396014);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0594u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0594u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0594: ;
+     edx = MEM32(0x42DC94);
+@@ -4456,7 +4456,7 @@ loc_000C0625: ;
+     PUSH32(esp, 0x396004);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C063Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C063Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C063F: ;
+     edx = MEM32(0x42DC94);
+@@ -4524,7 +4524,7 @@ loc_000C06D0: ;
+     PUSH32(esp, 0x395FF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C06EAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C06EAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C06EA: ;
+     edx = MEM32(0x42DC94);
+@@ -4592,7 +4592,7 @@ loc_000C077B: ;
+     PUSH32(esp, 0x395FEC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0795u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0795u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0795: ;
+     edx = MEM32(0x42DC94);
+@@ -4660,7 +4660,7 @@ loc_000C0826: ;
+     PUSH32(esp, 0x395FE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0840u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0840u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0840: ;
+     edx = MEM32(0x42DC94);
+@@ -4728,7 +4728,7 @@ loc_000C08D1: ;
+     PUSH32(esp, 0x395FD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C08EBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C08EBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C08EB: ;
+     edx = MEM32(0x42DC94);
+@@ -4796,7 +4796,7 @@ loc_000C097C: ;
+     PUSH32(esp, 0x395FC8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0996u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0996u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0996: ;
+     edx = MEM32(0x42DC94);
+@@ -4866,7 +4866,7 @@ loc_000C0A33: ;
+     PUSH32(esp, 0x395FB0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0A4Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0A4Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0A4D: ;
+     edx = MEM32(0x42DC94);
+@@ -4936,7 +4936,7 @@ loc_000C0AEA: ;
+     PUSH32(esp, 0x395FA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0B04u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0B04u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0B04: ;
+     edx = MEM32(0x42DC94);
+@@ -5004,7 +5004,7 @@ loc_000C0B95: ;
+     PUSH32(esp, 0x395F8C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0BAFu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0BAFu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0BAF: ;
+     edx = MEM32(0x42DC94);
+@@ -5074,7 +5074,7 @@ loc_000C0C4C: ;
+     PUSH32(esp, 0x395F80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0C66u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0C66u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0C66: ;
+     edx = MEM32(0x42DC94);
+@@ -5142,7 +5142,7 @@ loc_000C0CF7: ;
+     PUSH32(esp, 0x395F74);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0D11u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0D11u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0D11: ;
+     edx = MEM32(0x42DC94);
+@@ -5210,7 +5210,7 @@ loc_000C0DA2: ;
+     PUSH32(esp, 0x395F64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0DBCu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0DBCu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0DBC: ;
+     edx = MEM32(0x42DC94);
+@@ -5278,7 +5278,7 @@ loc_000C0E4D: ;
+     PUSH32(esp, 0x395F50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0E67u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0E67u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0E67: ;
+     edx = MEM32(0x42DC94);
+@@ -5346,7 +5346,7 @@ loc_000C0EF8: ;
+     PUSH32(esp, 0x395F3C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0F12u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0F12u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0F12: ;
+     edx = MEM32(0x42DC94);
+@@ -5414,7 +5414,7 @@ loc_000C0FA3: ;
+     PUSH32(esp, 0x395F2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0FBDu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0FBDu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0FBD: ;
+     edx = MEM32(0x42DC94);
+@@ -5482,7 +5482,7 @@ loc_000C104E: ;
+     PUSH32(esp, 0x395F20);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1068: ;
+     edx = MEM32(0x42DC94);
+@@ -5550,7 +5550,7 @@ loc_000C10F9: ;
+     PUSH32(esp, 0x395F0C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1113: ;
+     edx = MEM32(0x42DC94);
+@@ -5620,7 +5620,7 @@ loc_000C11B0: ;
+     PUSH32(esp, 0x395EF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C11CA: ;
+     edx = MEM32(0x42DC94);
+@@ -5688,7 +5688,7 @@ loc_000C125B: ;
+     PUSH32(esp, 0x3672E8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1275: ;
+     edx = MEM32(0x42DC94);
+@@ -5764,7 +5764,7 @@ loc_000C131C: ;
+     PUSH32(esp, 0x395EE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1336: ;
+     edx = MEM32(0x42DC94);
+@@ -5832,7 +5832,7 @@ loc_000C13C7: ;
+     PUSH32(esp, 0x395ED4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C13E1: ;
+     edx = MEM32(0x42DC94);
+@@ -5898,7 +5898,7 @@ loc_000C146A: ;
+     PUSH32(esp, 0x395EC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1484: ;
+     edx = MEM32(0x42DC94);
+@@ -5964,7 +5964,7 @@ loc_000C150D: ;
+     PUSH32(esp, 0x395EB4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1527: ;
+     edx = MEM32(0x42DC94);
+@@ -6030,7 +6030,7 @@ loc_000C15B0: ;
+     PUSH32(esp, 0x395EA4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C15CA: ;
+     edx = MEM32(0x42DC94);
+@@ -6096,7 +6096,7 @@ loc_000C1653: ;
+     PUSH32(esp, 0x395E94);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C166D: ;
+     edx = MEM32(0x42DC94);
+@@ -6162,7 +6162,7 @@ loc_000C16F6: ;
+     PUSH32(esp, 0x395E80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1710: ;
+     edx = MEM32(0x42DC94);
+@@ -6228,7 +6228,7 @@ loc_000C1799: ;
+     PUSH32(esp, 0x395E70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C17B3: ;
+     edx = MEM32(0x42DC94);
+@@ -6296,7 +6296,7 @@ loc_000C1844: ;
+     PUSH32(esp, 0x395E60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C185E: ;
+     edx = MEM32(0x42DC94);
+@@ -6362,7 +6362,7 @@ loc_000C18E7: ;
+     PUSH32(esp, 0x395E50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1901: ;
+     edx = MEM32(0x42DC94);
+@@ -6428,7 +6428,7 @@ loc_000C198A: ;
+     PUSH32(esp, 0x395E40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C19A4: ;
+     edx = MEM32(0x42DC94);
+@@ -6496,7 +6496,7 @@ loc_000C1A35: ;
+     PUSH32(esp, 0x395E28);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -6562,7 +6562,7 @@ loc_000C1AD8: ;
+     PUSH32(esp, 0x395E18);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -6630,7 +6630,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -6698,7 +6698,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -6766,7 +6766,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -6834,7 +6834,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -6902,7 +6902,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -6970,7 +6970,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -7038,7 +7038,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -7106,7 +7106,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -7174,7 +7174,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -7242,7 +7242,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -7310,7 +7310,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -7378,7 +7378,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -7446,7 +7446,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -7514,7 +7514,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -7582,7 +7582,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -7650,7 +7650,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -7718,7 +7718,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -7786,7 +7786,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -7854,7 +7854,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -7922,7 +7922,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -7990,7 +7990,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -8058,7 +8058,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -8126,7 +8126,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -8194,7 +8194,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -8262,7 +8262,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -8330,7 +8330,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -8398,7 +8398,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -8466,7 +8466,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -8534,7 +8534,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -8636,7 +8636,7 @@ loc_000C0424: ;
+     PUSH32(esp, 0x396028);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C043Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C043Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C043E: ;
+     edx = MEM32(0x42DC94);
+@@ -8704,7 +8704,7 @@ loc_000C04CF: ;
+     PUSH32(esp, 0x39601C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C04E9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C04E9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C04E9: ;
+     edx = MEM32(0x42DC94);
+@@ -8772,7 +8772,7 @@ loc_000C057A: ;
+     PUSH32(esp, 0x396014);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0594u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0594u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0594: ;
+     edx = MEM32(0x42DC94);
+@@ -8840,7 +8840,7 @@ loc_000C0625: ;
+     PUSH32(esp, 0x396004);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C063Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C063Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C063F: ;
+     edx = MEM32(0x42DC94);
+@@ -8908,7 +8908,7 @@ loc_000C06D0: ;
+     PUSH32(esp, 0x395FF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C06EAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C06EAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C06EA: ;
+     edx = MEM32(0x42DC94);
+@@ -8976,7 +8976,7 @@ loc_000C077B: ;
+     PUSH32(esp, 0x395FEC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0795u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0795u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0795: ;
+     edx = MEM32(0x42DC94);
+@@ -9044,7 +9044,7 @@ loc_000C0826: ;
+     PUSH32(esp, 0x395FE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0840u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0840u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0840: ;
+     edx = MEM32(0x42DC94);
+@@ -9112,7 +9112,7 @@ loc_000C08D1: ;
+     PUSH32(esp, 0x395FD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C08EBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C08EBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C08EB: ;
+     edx = MEM32(0x42DC94);
+@@ -9180,7 +9180,7 @@ loc_000C097C: ;
+     PUSH32(esp, 0x395FC8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0996u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0996u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0996: ;
+     edx = MEM32(0x42DC94);
+@@ -9250,7 +9250,7 @@ loc_000C0A33: ;
+     PUSH32(esp, 0x395FB0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0A4Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0A4Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0A4D: ;
+     edx = MEM32(0x42DC94);
+@@ -9320,7 +9320,7 @@ loc_000C0AEA: ;
+     PUSH32(esp, 0x395FA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0B04u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0B04u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0B04: ;
+     edx = MEM32(0x42DC94);
+@@ -9388,7 +9388,7 @@ loc_000C0B95: ;
+     PUSH32(esp, 0x395F8C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0BAFu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0BAFu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0BAF: ;
+     edx = MEM32(0x42DC94);
+@@ -9458,7 +9458,7 @@ loc_000C0C4C: ;
+     PUSH32(esp, 0x395F80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0C66u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0C66u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0C66: ;
+     edx = MEM32(0x42DC94);
+@@ -9526,7 +9526,7 @@ loc_000C0CF7: ;
+     PUSH32(esp, 0x395F74);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0D11u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0D11u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0D11: ;
+     edx = MEM32(0x42DC94);
+@@ -9594,7 +9594,7 @@ loc_000C0DA2: ;
+     PUSH32(esp, 0x395F64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0DBCu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0DBCu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0DBC: ;
+     edx = MEM32(0x42DC94);
+@@ -9662,7 +9662,7 @@ loc_000C0E4D: ;
+     PUSH32(esp, 0x395F50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0E67u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0E67u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0E67: ;
+     edx = MEM32(0x42DC94);
+@@ -9730,7 +9730,7 @@ loc_000C0EF8: ;
+     PUSH32(esp, 0x395F3C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0F12u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0F12u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0F12: ;
+     edx = MEM32(0x42DC94);
+@@ -9798,7 +9798,7 @@ loc_000C0FA3: ;
+     PUSH32(esp, 0x395F2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C0FBDu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C0FBDu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C0FBD: ;
+     edx = MEM32(0x42DC94);
+@@ -9866,7 +9866,7 @@ loc_000C104E: ;
+     PUSH32(esp, 0x395F20);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1068: ;
+     edx = MEM32(0x42DC94);
+@@ -9934,7 +9934,7 @@ loc_000C10F9: ;
+     PUSH32(esp, 0x395F0C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1113: ;
+     edx = MEM32(0x42DC94);
+@@ -10004,7 +10004,7 @@ loc_000C11B0: ;
+     PUSH32(esp, 0x395EF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C11CA: ;
+     edx = MEM32(0x42DC94);
+@@ -10072,7 +10072,7 @@ loc_000C125B: ;
+     PUSH32(esp, 0x3672E8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1275: ;
+     edx = MEM32(0x42DC94);
+@@ -10148,7 +10148,7 @@ loc_000C131C: ;
+     PUSH32(esp, 0x395EE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1336: ;
+     edx = MEM32(0x42DC94);
+@@ -10216,7 +10216,7 @@ loc_000C13C7: ;
+     PUSH32(esp, 0x395ED4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C13E1: ;
+     edx = MEM32(0x42DC94);
+@@ -10282,7 +10282,7 @@ loc_000C146A: ;
+     PUSH32(esp, 0x395EC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1484: ;
+     edx = MEM32(0x42DC94);
+@@ -10348,7 +10348,7 @@ loc_000C150D: ;
+     PUSH32(esp, 0x395EB4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1527: ;
+     edx = MEM32(0x42DC94);
+@@ -10414,7 +10414,7 @@ loc_000C15B0: ;
+     PUSH32(esp, 0x395EA4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C15CA: ;
+     edx = MEM32(0x42DC94);
+@@ -10480,7 +10480,7 @@ loc_000C1653: ;
+     PUSH32(esp, 0x395E94);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C166D: ;
+     edx = MEM32(0x42DC94);
+@@ -10546,7 +10546,7 @@ loc_000C16F6: ;
+     PUSH32(esp, 0x395E80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1710: ;
+     edx = MEM32(0x42DC94);
+@@ -10612,7 +10612,7 @@ loc_000C1799: ;
+     PUSH32(esp, 0x395E70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C17B3: ;
+     edx = MEM32(0x42DC94);
+@@ -10680,7 +10680,7 @@ loc_000C1844: ;
+     PUSH32(esp, 0x395E60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C185E: ;
+     edx = MEM32(0x42DC94);
+@@ -10746,7 +10746,7 @@ loc_000C18E7: ;
+     PUSH32(esp, 0x395E50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1901: ;
+     edx = MEM32(0x42DC94);
+@@ -10812,7 +10812,7 @@ loc_000C198A: ;
+     PUSH32(esp, 0x395E40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C19A4: ;
+     edx = MEM32(0x42DC94);
+@@ -10880,7 +10880,7 @@ loc_000C1A35: ;
+     PUSH32(esp, 0x395E28);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -10946,7 +10946,7 @@ loc_000C1AD8: ;
+     PUSH32(esp, 0x395E18);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -11014,7 +11014,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -11082,7 +11082,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -11150,7 +11150,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -11218,7 +11218,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -11286,7 +11286,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -11354,7 +11354,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -11422,7 +11422,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -11490,7 +11490,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -11558,7 +11558,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -11626,7 +11626,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -11694,7 +11694,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -11762,7 +11762,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -11830,7 +11830,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -11898,7 +11898,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -11966,7 +11966,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -12034,7 +12034,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -12102,7 +12102,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -12170,7 +12170,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -12238,7 +12238,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -12306,7 +12306,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -12374,7 +12374,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -12442,7 +12442,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -12510,7 +12510,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -12578,7 +12578,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -12646,7 +12646,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -12714,7 +12714,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -12782,7 +12782,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -12850,7 +12850,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -12918,7 +12918,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -13028,7 +13028,7 @@ loc_000C104E: ;
+     PUSH32(esp, 0x395F20);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1068: ;
+     edx = MEM32(0x42DC94);
+@@ -13096,7 +13096,7 @@ loc_000C10F9: ;
+     PUSH32(esp, 0x395F0C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1113: ;
+     edx = MEM32(0x42DC94);
+@@ -13166,7 +13166,7 @@ loc_000C11B0: ;
+     PUSH32(esp, 0x395EF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C11CA: ;
+     edx = MEM32(0x42DC94);
+@@ -13234,7 +13234,7 @@ loc_000C125B: ;
+     PUSH32(esp, 0x3672E8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1275: ;
+     edx = MEM32(0x42DC94);
+@@ -13310,7 +13310,7 @@ loc_000C131C: ;
+     PUSH32(esp, 0x395EE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1336: ;
+     edx = MEM32(0x42DC94);
+@@ -13378,7 +13378,7 @@ loc_000C13C7: ;
+     PUSH32(esp, 0x395ED4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C13E1: ;
+     edx = MEM32(0x42DC94);
+@@ -13444,7 +13444,7 @@ loc_000C146A: ;
+     PUSH32(esp, 0x395EC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1484: ;
+     edx = MEM32(0x42DC94);
+@@ -13510,7 +13510,7 @@ loc_000C150D: ;
+     PUSH32(esp, 0x395EB4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1527: ;
+     edx = MEM32(0x42DC94);
+@@ -13576,7 +13576,7 @@ loc_000C15B0: ;
+     PUSH32(esp, 0x395EA4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C15CA: ;
+     edx = MEM32(0x42DC94);
+@@ -13642,7 +13642,7 @@ loc_000C1653: ;
+     PUSH32(esp, 0x395E94);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C166D: ;
+     edx = MEM32(0x42DC94);
+@@ -13708,7 +13708,7 @@ loc_000C16F6: ;
+     PUSH32(esp, 0x395E80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1710: ;
+     edx = MEM32(0x42DC94);
+@@ -13774,7 +13774,7 @@ loc_000C1799: ;
+     PUSH32(esp, 0x395E70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C17B3: ;
+     edx = MEM32(0x42DC94);
+@@ -13842,7 +13842,7 @@ loc_000C1844: ;
+     PUSH32(esp, 0x395E60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C185E: ;
+     edx = MEM32(0x42DC94);
+@@ -13908,7 +13908,7 @@ loc_000C18E7: ;
+     PUSH32(esp, 0x395E50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1901: ;
+     edx = MEM32(0x42DC94);
+@@ -13974,7 +13974,7 @@ loc_000C198A: ;
+     PUSH32(esp, 0x395E40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C19A4: ;
+     edx = MEM32(0x42DC94);
+@@ -14042,7 +14042,7 @@ loc_000C1A35: ;
+     PUSH32(esp, 0x395E28);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -14108,7 +14108,7 @@ loc_000C1AD8: ;
+     PUSH32(esp, 0x395E18);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -14176,7 +14176,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -14244,7 +14244,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -14312,7 +14312,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -14380,7 +14380,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -14448,7 +14448,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -14516,7 +14516,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -14584,7 +14584,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -14652,7 +14652,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -14720,7 +14720,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -14788,7 +14788,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -14856,7 +14856,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -14924,7 +14924,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -14992,7 +14992,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -15060,7 +15060,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -15128,7 +15128,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -15196,7 +15196,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -15264,7 +15264,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -15332,7 +15332,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -15400,7 +15400,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -15468,7 +15468,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -15536,7 +15536,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -15604,7 +15604,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -15672,7 +15672,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -15740,7 +15740,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -15808,7 +15808,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -15876,7 +15876,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -15944,7 +15944,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -16012,7 +16012,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -16080,7 +16080,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -16185,7 +16185,7 @@ loc_000C104E: ;
+     PUSH32(esp, 0x395F20);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1068: ;
+     edx = MEM32(0x42DC94);
+@@ -16253,7 +16253,7 @@ loc_000C10F9: ;
+     PUSH32(esp, 0x395F0C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1113: ;
+     edx = MEM32(0x42DC94);
+@@ -16323,7 +16323,7 @@ loc_000C11B0: ;
+     PUSH32(esp, 0x395EF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C11CA: ;
+     edx = MEM32(0x42DC94);
+@@ -16391,7 +16391,7 @@ loc_000C125B: ;
+     PUSH32(esp, 0x3672E8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1275: ;
+     edx = MEM32(0x42DC94);
+@@ -16467,7 +16467,7 @@ loc_000C131C: ;
+     PUSH32(esp, 0x395EE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1336: ;
+     edx = MEM32(0x42DC94);
+@@ -16535,7 +16535,7 @@ loc_000C13C7: ;
+     PUSH32(esp, 0x395ED4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C13E1: ;
+     edx = MEM32(0x42DC94);
+@@ -16601,7 +16601,7 @@ loc_000C146A: ;
+     PUSH32(esp, 0x395EC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1484: ;
+     edx = MEM32(0x42DC94);
+@@ -16667,7 +16667,7 @@ loc_000C150D: ;
+     PUSH32(esp, 0x395EB4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1527: ;
+     edx = MEM32(0x42DC94);
+@@ -16733,7 +16733,7 @@ loc_000C15B0: ;
+     PUSH32(esp, 0x395EA4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C15CA: ;
+     edx = MEM32(0x42DC94);
+@@ -16799,7 +16799,7 @@ loc_000C1653: ;
+     PUSH32(esp, 0x395E94);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C166D: ;
+     edx = MEM32(0x42DC94);
+@@ -16865,7 +16865,7 @@ loc_000C16F6: ;
+     PUSH32(esp, 0x395E80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1710: ;
+     edx = MEM32(0x42DC94);
+@@ -16931,7 +16931,7 @@ loc_000C1799: ;
+     PUSH32(esp, 0x395E70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C17B3: ;
+     edx = MEM32(0x42DC94);
+@@ -16999,7 +16999,7 @@ loc_000C1844: ;
+     PUSH32(esp, 0x395E60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C185E: ;
+     edx = MEM32(0x42DC94);
+@@ -17065,7 +17065,7 @@ loc_000C18E7: ;
+     PUSH32(esp, 0x395E50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1901: ;
+     edx = MEM32(0x42DC94);
+@@ -17131,7 +17131,7 @@ loc_000C198A: ;
+     PUSH32(esp, 0x395E40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C19A4: ;
+     edx = MEM32(0x42DC94);
+@@ -17199,7 +17199,7 @@ loc_000C1A35: ;
+     PUSH32(esp, 0x395E28);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -17265,7 +17265,7 @@ loc_000C1AD8: ;
+     PUSH32(esp, 0x395E18);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -17333,7 +17333,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -17401,7 +17401,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -17469,7 +17469,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -17537,7 +17537,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -17605,7 +17605,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -17673,7 +17673,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -17741,7 +17741,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -17809,7 +17809,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -17877,7 +17877,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -17945,7 +17945,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -18013,7 +18013,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -18081,7 +18081,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -18149,7 +18149,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -18217,7 +18217,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -18285,7 +18285,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -18353,7 +18353,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -18421,7 +18421,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -18489,7 +18489,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -18557,7 +18557,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -18625,7 +18625,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -18693,7 +18693,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -18761,7 +18761,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -18829,7 +18829,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -18897,7 +18897,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -18965,7 +18965,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -19033,7 +19033,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -19101,7 +19101,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -19169,7 +19169,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -19237,7 +19237,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -19330,7 +19330,7 @@ loc_000C104E: ;
+     PUSH32(esp, 0x395F20);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1068u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1068: ;
+     edx = MEM32(0x42DC94);
+@@ -19398,7 +19398,7 @@ loc_000C10F9: ;
+     PUSH32(esp, 0x395F0C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1113u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1113: ;
+     edx = MEM32(0x42DC94);
+@@ -19468,7 +19468,7 @@ loc_000C11B0: ;
+     PUSH32(esp, 0x395EF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C11CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C11CA: ;
+     edx = MEM32(0x42DC94);
+@@ -19536,7 +19536,7 @@ loc_000C125B: ;
+     PUSH32(esp, 0x3672E8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1275u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1275: ;
+     edx = MEM32(0x42DC94);
+@@ -19612,7 +19612,7 @@ loc_000C131C: ;
+     PUSH32(esp, 0x395EE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1336u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1336: ;
+     edx = MEM32(0x42DC94);
+@@ -19680,7 +19680,7 @@ loc_000C13C7: ;
+     PUSH32(esp, 0x395ED4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C13E1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C13E1: ;
+     edx = MEM32(0x42DC94);
+@@ -19746,7 +19746,7 @@ loc_000C146A: ;
+     PUSH32(esp, 0x395EC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1484u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1484: ;
+     edx = MEM32(0x42DC94);
+@@ -19812,7 +19812,7 @@ loc_000C150D: ;
+     PUSH32(esp, 0x395EB4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1527u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1527: ;
+     edx = MEM32(0x42DC94);
+@@ -19878,7 +19878,7 @@ loc_000C15B0: ;
+     PUSH32(esp, 0x395EA4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C15CAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C15CA: ;
+     edx = MEM32(0x42DC94);
+@@ -19944,7 +19944,7 @@ loc_000C1653: ;
+     PUSH32(esp, 0x395E94);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C166Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C166D: ;
+     edx = MEM32(0x42DC94);
+@@ -20010,7 +20010,7 @@ loc_000C16F6: ;
+     PUSH32(esp, 0x395E80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1710u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1710: ;
+     edx = MEM32(0x42DC94);
+@@ -20076,7 +20076,7 @@ loc_000C1799: ;
+     PUSH32(esp, 0x395E70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C17B3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C17B3: ;
+     edx = MEM32(0x42DC94);
+@@ -20144,7 +20144,7 @@ loc_000C1844: ;
+     PUSH32(esp, 0x395E60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C185Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C185E: ;
+     edx = MEM32(0x42DC94);
+@@ -20210,7 +20210,7 @@ loc_000C18E7: ;
+     PUSH32(esp, 0x395E50);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1901u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1901: ;
+     edx = MEM32(0x42DC94);
+@@ -20276,7 +20276,7 @@ loc_000C198A: ;
+     PUSH32(esp, 0x395E40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C19A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C19A4: ;
+     edx = MEM32(0x42DC94);
+@@ -20344,7 +20344,7 @@ loc_000C1A35: ;
+     PUSH32(esp, 0x395E28);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -20410,7 +20410,7 @@ loc_000C1AD8: ;
+     PUSH32(esp, 0x395E18);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -20478,7 +20478,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -20546,7 +20546,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -20614,7 +20614,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -20682,7 +20682,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -20750,7 +20750,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -20818,7 +20818,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -20886,7 +20886,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -20954,7 +20954,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -21022,7 +21022,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -21090,7 +21090,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -21158,7 +21158,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -21226,7 +21226,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -21294,7 +21294,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -21362,7 +21362,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -21430,7 +21430,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -21498,7 +21498,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -21566,7 +21566,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -21634,7 +21634,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -21702,7 +21702,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -21770,7 +21770,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -21838,7 +21838,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -21906,7 +21906,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -21974,7 +21974,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -22042,7 +22042,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -22110,7 +22110,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -22178,7 +22178,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -22246,7 +22246,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -22314,7 +22314,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -22382,7 +22382,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -22465,7 +22465,7 @@ void sub_000C1AE6(void)
+ 
+ loc_000C1AE6: ;
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1AF2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1AF2: ;
+     edx = MEM32(0x42DC94);
+@@ -22533,7 +22533,7 @@ loc_000C1B83: ;
+     PUSH32(esp, 0x395E08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1B9Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1B9D: ;
+     edx = MEM32(0x42DC94);
+@@ -22601,7 +22601,7 @@ loc_000C1C2E: ;
+     PUSH32(esp, 0x395DF8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1C48u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1C48: ;
+     edx = MEM32(0x42DC94);
+@@ -22669,7 +22669,7 @@ loc_000C1CD9: ;
+     PUSH32(esp, 0x395DE8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1CF3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1CF3: ;
+     edx = MEM32(0x42DC94);
+@@ -22737,7 +22737,7 @@ loc_000C1D84: ;
+     PUSH32(esp, 0x395DDC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1D9Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1D9E: ;
+     edx = MEM32(0x42DC94);
+@@ -22805,7 +22805,7 @@ loc_000C1E2F: ;
+     PUSH32(esp, 0x395DCC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1E49u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1E49: ;
+     edx = MEM32(0x42DC94);
+@@ -22873,7 +22873,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -22941,7 +22941,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -23009,7 +23009,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -23077,7 +23077,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -23145,7 +23145,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -23213,7 +23213,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -23281,7 +23281,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -23349,7 +23349,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -23417,7 +23417,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -23485,7 +23485,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -23553,7 +23553,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -23621,7 +23621,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -23689,7 +23689,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -23757,7 +23757,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -23825,7 +23825,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -23893,7 +23893,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -23961,7 +23961,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -24029,7 +24029,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -24097,7 +24097,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -24165,7 +24165,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -24233,7 +24233,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -24301,7 +24301,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -24369,7 +24369,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -24437,7 +24437,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -24578,7 +24578,7 @@ loc_000C1EDA: ;
+     PUSH32(esp, 0x395DB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1EF4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1EF4: ;
+     edx = MEM32(0x42DC94);
+@@ -24646,7 +24646,7 @@ loc_000C1F85: ;
+     PUSH32(esp, 0x395DA0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C1F9Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C1F9F: ;
+     edx = MEM32(0x42DC94);
+@@ -24714,7 +24714,7 @@ loc_000C2030: ;
+     PUSH32(esp, 0x395D88);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C204Au); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C204A: ;
+     edx = MEM32(0x42DC94);
+@@ -24782,7 +24782,7 @@ loc_000C20DB: ;
+     PUSH32(esp, 0x395D70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C20F5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C20F5: ;
+     edx = MEM32(0x42DC94);
+@@ -24850,7 +24850,7 @@ loc_000C2186: ;
+     PUSH32(esp, 0x395D64);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C21A0u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C21A0: ;
+     edx = MEM32(0x42DC94);
+@@ -24918,7 +24918,7 @@ loc_000C2231: ;
+     PUSH32(esp, 0x395D54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C224Bu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C224B: ;
+     edx = MEM32(0x42DC94);
+@@ -24986,7 +24986,7 @@ loc_000C22DC: ;
+     PUSH32(esp, 0x395D40);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C22F6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C22F6: ;
+     edx = MEM32(0x42DC94);
+@@ -25054,7 +25054,7 @@ loc_000C2387: ;
+     PUSH32(esp, 0x395D2C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C23A1u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C23A1: ;
+     edx = MEM32(0x42DC94);
+@@ -25122,7 +25122,7 @@ loc_000C2432: ;
+     PUSH32(esp, 0x395D1C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C244Cu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C244C: ;
+     edx = MEM32(0x42DC94);
+@@ -25190,7 +25190,7 @@ loc_000C24DD: ;
+     PUSH32(esp, 0x395D08);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C24F7u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C24F7: ;
+     edx = MEM32(0x42DC94);
+@@ -25258,7 +25258,7 @@ loc_000C2588: ;
+     PUSH32(esp, 0x395CFC);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C25A2u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C25A2: ;
+     edx = MEM32(0x42DC94);
+@@ -25326,7 +25326,7 @@ loc_000C2633: ;
+     PUSH32(esp, 0x395CF0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C264Du); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C264D: ;
+     edx = MEM32(0x42DC94);
+@@ -25394,7 +25394,7 @@ loc_000C26DE: ;
+     PUSH32(esp, 0x395CE4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C26F8u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C26F8: ;
+     edx = MEM32(0x42DC94);
+@@ -25462,7 +25462,7 @@ loc_000C2789: ;
+     PUSH32(esp, 0x395CD8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C27A3u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C27A3: ;
+     edx = MEM32(0x42DC94);
+@@ -25530,7 +25530,7 @@ loc_000C2834: ;
+     PUSH32(esp, 0x395CD0);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C284Eu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C284E: ;
+     edx = MEM32(0x42DC94);
+@@ -25598,7 +25598,7 @@ loc_000C28DF: ;
+     PUSH32(esp, 0x395CC4);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C28F9u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C28F9: ;
+     edx = MEM32(0x42DC94);
+@@ -25666,7 +25666,7 @@ loc_000C298A: ;
+     PUSH32(esp, 0x395CB8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C29A4u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C29A4: ;
+     edx = MEM32(0x42DC94);
+@@ -25734,7 +25734,7 @@ loc_000C2A35: ;
+     PUSH32(esp, 0x395CA8);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2A4Fu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2A4F: ;
+     edx = MEM32(0x42DC94);
+@@ -25802,7 +25802,7 @@ loc_000C2AE0: ;
+     PUSH32(esp, 0x395C9C);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2AFAu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2AFA: ;
+     edx = MEM32(0x42DC94);
+@@ -25870,7 +25870,7 @@ loc_000C2B8B: ;
+     PUSH32(esp, 0x395C90);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2BA5u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2BA5: ;
+     edx = MEM32(0x42DC94);
+@@ -25938,7 +25938,7 @@ loc_000C2C36: ;
+     PUSH32(esp, 0x395C80);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2C50u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2C50: ;
+     edx = MEM32(0x42DC94);
+@@ -26006,7 +26006,7 @@ loc_000C2CE1: ;
+     PUSH32(esp, 0x395C70);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2CFBu); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2CFB: ;
+     edx = MEM32(0x42DC94);
+@@ -26074,7 +26074,7 @@ loc_000C2D8C: ;
+     PUSH32(esp, 0x395C60);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2DA6u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2DA6: ;
+     edx = MEM32(0x42DC94);
+@@ -26142,7 +26142,7 @@ loc_000C2E37: ;
+     PUSH32(esp, 0x395C54);
+     PUSH32(esp, eax);
+     MEM32(ecx * 4 + 0x42DA90) = eax;
+-    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, sub_002A3710); /* call 0x002A3710 */
++    PUSH32(esp, 0x000C2E51u); RECOMP_ABI_CALL(0x002A3710u, strncpy_002A3710); /* call 0x002A3710 */
+ 
+ loc_000C2E51: ;
+     edx = MEM32(0x42DC94);
+@@ -26635,20 +26635,18 @@ void sub_000C30E0(void)
+     (void)_fa; (void)_fb; (void)_fas; (void)_fbs;
+     double _fca = 0.0, _fcb = 0.0;
+     (void)_fca; (void)_fcb;
+-    int _cf = 0; /* carry flag */
+ 
+ loc_000C30E0: ;
+     eax = MEM32(ecx + 0x18);
+     _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fb = (uint32_t)(0) & 0xFFFFFFFFu;
+     _fas = (int32_t)(int32_t)(_fa); _fbs = (int32_t)(int32_t)(_fb); /* cmp eax, 0 (32-bit) */
+-    _cf = 0; /* nothing borrows from zero */
+     if (CMP_G(_fas, _fbs)) goto loc_000C311F; /* jg: greater (signed >) */
+ 
+ loc_000C30E7: ;
+     xmm0 = XMM_SCALAR(MEMF(esp + 4)); /* movss */
+     xmm1 = XMM_ZERO(); /* xorps self = zero */
+     _fca = xmm0.f[0]; _fcb = xmm1.f[0]; /* comiss */
+-    if ((_fca < _fcb || _fca != _fca || _fcb != _fcb)) goto loc_000C3104; /* jb: below (unsigned <) (xmm0.f[0] vs xmm1.f[0]) */
++    if ((_fca < _fcb)) goto loc_000C3104; /* jb: below (unsigned <) (xmm0.f[0] vs xmm1.f[0]) */
+ 
+ loc_000C30F5: ;
+     xmm2 = XMM_SCALAR(MEMF(ecx + 0xC)); /* movss */
+@@ -26669,11 +26667,10 @@ loc_000C3107: ;
+     g_eflags = (g_eflags & ~0x40u) | (((_fca == _fcb || _fca != _fca || _fcb != _fcb)) ? 0x40u : 0u);
+     g_eflags = (g_eflags & ~0x80u) | ((0) ? 0x80u : 0u);
+     g_eflags = (g_eflags & ~0x800u) | ((0) ? 0x800u : 0u);
+-    g_eflags &= ~0x10u; /* float compare clears AF */
++    g_eflags &= ~0x10u; /* SSE compare clears AF */
+     SET_HI8(eax, (g_eflags & 0xD5u) | 2u); /* lahf */
+     _fa = (uint32_t)(HI8(eax)) & 0xFFu; _fb = (uint32_t)(0x44) & 0xFFu;
+     _fas = (int32_t)(int8_t)(_fa); _fbs = (int32_t)(int8_t)(_fb); /* test HI8(eax), 0x44 (8-bit) */
+-    _cf = 0; /* nothing borrows from zero */
+     MEMF(ecx + 8) = xmm0.f[0]; /* movss */
+     if (RECOMP_PARITY8((_fa) & (_fb))) goto loc_000C311F; /* jp: parity */
+ 
+@@ -28164,7 +28161,6 @@ void sub_000C3790(void)
+     (void)_fa; (void)_fb; (void)_fas; (void)_fbs;
+     double _fca = 0.0, _fcb = 0.0;
+     (void)_fca; (void)_fcb;
+-    int _cf = 0; /* carry flag */
+ 
+ loc_000C3790: ;
+     xmm0 = XMM_SCALAR(MEMF(ecx + 0x57C)); /* movss */
+@@ -28174,11 +28170,10 @@ loc_000C3790: ;
+     g_eflags = (g_eflags & ~0x40u) | (((_fca == _fcb || _fca != _fca || _fcb != _fcb)) ? 0x40u : 0u);
+     g_eflags = (g_eflags & ~0x80u) | ((0) ? 0x80u : 0u);
+     g_eflags = (g_eflags & ~0x800u) | ((0) ? 0x800u : 0u);
+-    g_eflags &= ~0x10u; /* float compare clears AF */
++    g_eflags &= ~0x10u; /* SSE compare clears AF */
+     SET_HI8(eax, (g_eflags & 0xD5u) | 2u); /* lahf */
+     _fa = (uint32_t)(HI8(eax)) & 0xFFu; _fb = (uint32_t)(0x44) & 0xFFu;
+     _fas = (int32_t)(int8_t)(_fa); _fbs = (int32_t)(int8_t)(_fb); /* test HI8(eax), 0x44 (8-bit) */
+-    _cf = 0; /* nothing borrows from zero */
+     if (RECOMP_PARITY8((_fa) & (_fb))) goto loc_000C37AB; /* jp: parity */
+ 
+ loc_000C37A5: ;
+@@ -28186,7 +28181,6 @@ loc_000C37A5: ;
+     esp += 4; return; /* ret */
+ 
+ loc_000C37AB: ;
+-    _cf = 0; /* xor clears CF */
+     eax = 0; /* xor self */
+     _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* xor result */
+     esp += 4; return; /* ret */
+@@ -28414,7 +28408,6 @@ void sub_000C3860(void)
+     (void)_fa; (void)_fb; (void)_fas; (void)_fbs;
+     double _fca = 0.0, _fcb = 0.0;
+     (void)_fca; (void)_fcb;
+-    int _cf = 0; /* carry flag */
+ 
+ loc_000C3860: ;
+     xmm0 = XMM_SCALAR(MEMF(ecx + 0x588)); /* movss */
+@@ -28424,11 +28417,10 @@ loc_000C3860: ;
+     g_eflags = (g_eflags & ~0x40u) | (((_fca == _fcb || _fca != _fca || _fcb != _fcb)) ? 0x40u : 0u);
+     g_eflags = (g_eflags & ~0x80u) | ((0) ? 0x80u : 0u);
+     g_eflags = (g_eflags & ~0x800u) | ((0) ? 0x800u : 0u);
+-    g_eflags &= ~0x10u; /* float compare clears AF */
++    g_eflags &= ~0x10u; /* SSE compare clears AF */
+     SET_HI8(eax, (g_eflags & 0xD5u) | 2u); /* lahf */
+     _fa = (uint32_t)(HI8(eax)) & 0xFFu; _fb = (uint32_t)(0x44) & 0xFFu;
+     _fas = (int32_t)(int8_t)(_fa); _fbs = (int32_t)(int8_t)(_fb); /* test HI8(eax), 0x44 (8-bit) */
+-    _cf = 0; /* nothing borrows from zero */
+     if (RECOMP_PARITY8((_fa) & (_fb))) goto loc_000C387B; /* jp: parity */
+ 
+ loc_000C3875: ;
+@@ -28436,7 +28428,6 @@ loc_000C3875: ;
+     esp += 4; return; /* ret */
+ 
+ loc_000C387B: ;
+-    _cf = 0; /* xor clears CF */
+     eax = 0; /* xor self */
+     _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* xor result */
+     esp += 4; return; /* ret */
+@@ -29300,7 +29291,7 @@ loc_000C3C00: ;
+     PUSH32(esp, ecx);
+     PUSH32(esp, esi);
+     esi = ecx;
+-    PUSH32(esp, 0x000C3C09u); RECOMP_ABI_CALL(0x002A31D5u, sub_002A31D5); /* call 0x002A31D5 */
++    PUSH32(esp, 0x000C3C09u); RECOMP_ABI_CALL(0x002A31D5u, rand_002A31D5); /* call 0x002A31D5 */
+ 
+ loc_000C3C09: ;
+     MEM32(esp + 4) = eax;
+@@ -29356,7 +29347,7 @@ loc_000C3C40: ;
+     PUSH32(esp, ecx);
+     PUSH32(esp, esi);
+     esi = ecx;
+-    PUSH32(esp, 0x000C3C49u); RECOMP_ABI_CALL(0x002A31D5u, sub_002A31D5); /* call 0x002A31D5 */
++    PUSH32(esp, 0x000C3C49u); RECOMP_ABI_CALL(0x002A31D5u, rand_002A31D5); /* call 0x002A31D5 */
+ 
+ loc_000C3C49: ;
+     MEM32(esp + 4) = eax;
+@@ -29582,7 +29573,7 @@ loc_000C3D60: ;
+     fp_push(MEMF(0x361FB0)); /* fld float */
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+-    if ((g_fp_cmp <= 0 || g_fp_cmp == 2) /* fcompi */) goto loc_000C3DAE; /* jbe: below or equal (unsigned <=) */
++    if ((g_fp_cmp <= 0) /* fcompi */) goto loc_000C3DAE; /* jbe: below or equal (unsigned <=) */
+ 
+ loc_000C3DA3: ;
+     xmm0 = xmm2; /* movaps */
+@@ -29604,7 +29595,7 @@ loc_000C3DB4: ;
+     xmm2.f[0] = xmm2.f[0] - MEMF(esp + 8); /* subss */
+     g_fp_cmp = RECOMP_FCMP(fp_top(), fp_st1()); fp_pop(); /* fcompi */
+     fp_pop(); /* fstp st(0) */
+-    if ((g_fp_cmp > 0 && g_fp_cmp != 2) /* fcompi */) goto loc_000C3DEF; /* ja: above (unsigned >) */
++    if ((g_fp_cmp > 0) /* fcompi */) goto loc_000C3DEF; /* ja: above (unsigned >) */
+ 
+ loc_000C3DE9: ;
+     xmm2 = XMM_SCALAR(MEMF(esp + 8)); /* movss */

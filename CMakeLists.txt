@@ -44,7 +44,7 @@ add_subdirectory(${XBOXRECOMP_DIR} ${CMAKE_BINARY_DIR}/xboxrecomp)
 
 # Collect generated recompiled code.
 # The recomp pipeline outputs files into src/game/recomp/gen/.
-# With --split 1000, you get recomp_0000.c, recomp_0001.c, etc.
+# With --split 250, you get recomp_0000.c, recomp_0001.c, etc.
 # CONFIGURE_DEPENDS so re-running the recompiler picks up added/removed files
 # without a manual re-configure. A plain GLOB is evaluated once at configure
 # time, so a newly generated file (an extra chunk, recomp_stubs_unresolved.c)
@@ -54,10 +54,12 @@ file(GLOB RECOMP_GEN_SOURCES CONFIGURE_DEPENDS "${RECOMP_GEN_DIR}/*.c")
 if(NOT RECOMP_GEN_SOURCES OR
    NOT EXISTS "${RECOMP_GEN_DIR}/recomp_dispatch.c" OR
    NOT EXISTS "${RECOMP_GEN_DIR}/recomp_funcs.h" OR
-   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_types.h")
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_types.h" OR
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_overrides.h" OR
+   NOT EXISTS "${RECOMP_GEN_DIR}/recomp_preserved.c")
     message(FATAL_ERROR
-        "Recompiled game sources are missing or incomplete. "
-        "Run ./regen.sh from the scghost directory in Git Bash, then configure again.")
+        "Patched recompiled game sources are missing or incomplete. "
+        "Run bash regen.sh from the scghost directory in Git Bash, then configure again.")
 endif()
 
 # Core game sources
@@ -117,6 +119,16 @@ if(MSVC)
     )
     # The generated code files can be very large. Increase object file section limit.
     target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+    foreach(recomp_source IN ITEMS ${RECOMP_GEN_SOURCES})
+        file(STRINGS "${recomp_source}" hot_movie_decoder LIMIT_COUNT 1
+            REGEX "^void sub_002(30170|312D0|31C10|330A0|36090|37410)\\(void\\)")
+        if(hot_movie_decoder)
+            set_property(SOURCE "${recomp_source}" APPEND PROPERTY
+                COMPILE_OPTIONS "$<$<CONFIG:Debug>:/O2>")
+            set_property(SOURCE "${recomp_source}" APPEND PROPERTY
+                VS_SETTINGS "BasicRuntimeChecks=Default")
+        endif()
+    endforeach()
 endif()
 
 # ── Game-specific additions ─────────────────────────────────────

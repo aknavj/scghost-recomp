@@ -1,2 +1,4 @@
 patches/*.patch filter=lfs diff=lfs merge=lfs -text
-patches/generated.patch filter=lfs diff=lfs merge=lfs -text
+patches/generated/*.patch !filter !diff !merge -text !eol
+patches/generated/series text eol=lf
+*.sh text eol=lf

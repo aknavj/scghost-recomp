@@ -73,7 +73,10 @@ workspace\
       StarCraft Ghost\
         Ghost.xbe
     patches\
-      generated.patch
+      generated\
+        series
+        recomp_0000.c.patch
+        ...
     src\
       main.c
       recomp_manual.c
@@ -115,9 +118,15 @@ The script runs the following XboxRecomp tools:
 3. Library-function identification.
 4. ABI analysis.
 5. C recompilation.
+6. Checked application of the preserved generated-source patchset.
 
 Analysis and regeneration logs are written under `build\xr`. Generated C
 sources and headers are written to `src\game\recomp\gen` and are ignored by Git.
+Translation uses `--all --split 250`, producing the same chunk layout expected
+by the source patchset. Generation and patching run in a fresh staging directory
+under `build\xr`; the live generated tree is replaced only after both succeed.
+The previous tree is moved to a uniquely named directory under
+`build\regen-backups` before publication.
 
 Existing disassembly is reused. To rebuild it:
 
@@ -125,29 +134,51 @@ Existing disassembly is reused. To rebuild it:
 bash regen.sh --disasm
 ```
 
-If regeneration fails, do not build the partially regenerated output. Check
-`build\xr\disasm.log` or `build\xr\recomp.log`, resolve the error, and rerun
-regeneration.
+If regeneration or patching fails, the existing generated sources remain in
+place. The script reports the staging directory containing the translation
+log and partial output. Check it or `build\xr\disasm.log`, resolve the error,
+and rerun. Do not regenerate while compiling. A lock prevents simultaneous
+regeneration; after an abrupt interruption, remove `build\xr\regen.lock` only
+after confirming no regeneration process is active.
 
 ## Apply the Generated-Code Patch
 
-After generating the unpatched baseline, run in **Git Bash**:
+Normal regeneration applies the patch automatically. To verify an existing
+patched tree, or apply the patch to a matching unpatched split-250 baseline,
+run in **Git Bash**:
 
 ```bash
 bash patch.sh --check
 bash patch.sh
 ```
 
-[patch.sh](patch.sh) checks that [generated.patch](patches/generated.patch)
-applies before changing files. `--check` performs validation only. The script
-can be called from another directory because it resolves paths relative to
-its own location.
+[patch.sh](patch.sh) loads the ordered [series](patches/generated/series) and
+checks the complete patchset before changing files. `--check` performs baseline
+applicability validation only. `--validate` checks the series and member files
+without requiring generated sources. The script can be called from another directory because it resolves paths relative to its own location.
 
-The patch includes code repairs, preserved functions and a change from 18
-generated code chunks to 70. Its large size reflects that rechunking as well
-as the code changes. It must match the generated baseline; it is not a
-general-purpose patch for arbitrary XBE versions or toolkit output.
+Each file in [patches/generated](patches/generated) patches one generated target:
+numbered C chunks, dispatch, declarations, overrides or preserved functions.
+The files are ordinary text patches, not LFS payloads. Add new members to
+`series`; missing, empty, duplicate, unlisted or LFS-pointer members are rejected.
+Other patches directly under `patches` are not automatically applied.
+Git line-ending conversion is disabled for these patches to preserve the exact
+line endings embedded in their source hunks; do not normalize the patch files.
 
+The script combines the ordered members into one temporary Git apply
+transaction. A failure in any member prevents the entire patchset from being
+applied; there is no partially applied prefix. Applying the patchset twice
+reports that it is already applied rather than modifying the tree again.
+`--root DIRECTORY` selects a staging root inside this project;
+the relative target remains `src\game\recomp\gen`.
+
+The patchset must match the generated baseline; it is not a general-purpose patch for
+arbitrary XBE versions or toolkit output. Changes to the toolkit's generated
+output may require rebasing the patch. A mismatched patch is an error, not a
+reason to force application or skip repairs. With the same XBE, toolkit and
+generation settings, the baseline plus patch reproduces the validated generated
+source bytes. This does not promise identical executable bytes across different
+compilers, SDKs, build configurations or absolute build paths.
 
 ## Configure and Build
 
@@ -166,7 +197,7 @@ source files are large, so compilation can take considerable time.
 
 | Error | Check |
 | --- | --- |
-| Missing generated sources during CMake configuration | Run `regen.sh`, then apply the patch before configuring. |
+| Missing or unpatched generated sources during CMake configuration | Run `regen.sh`; it applies the source patchset before publishing. |
 | Unresolved entry-point or dispatch symbols | Ensure CMake includes `src\game\recomp\gen` and reconfigure after changing generated files. |
 | `sub_00320B70` redefinition with different basic types | The patched `recomp_funcs.h` must include `recomp_overrides.h` before its closing include guard. |
 | Missing generated chunk or object file | Wait for regeneration to finish, then reconfigure and rebuild. Do not regenerate during compilation. |
@@ -176,6 +207,26 @@ source files are large, so compilation can take considerable time.
 Do not replace failed guest calls or unsupported GPU operations with silent
 success merely to advance execution. Build errors, runtime compatibility,
 visual correctness and performance need separate verification.
+
+## Build Synchronization
+
+The original port's targeted Debug movie-decoder optimization is also applied
+here. CMake locates the six profiled decoder definitions in the generated
+sources, so regeneration can move them between chunks without losing `/O2`.
+Runtime checks are disabled for those optimized chunks; other Debug sources
+keep their normal settings. Release already optimizes all generated sources.
+
+This project retains its generated-patch workflow, native GPU fences and
+vblank delivery, plus the newer rendering, audio-guard and window fixes.
+Do not replace its startup code or runtime wholesale with an older checkout:
+the older fence-mirroring path is not an equivalent synchronization mode.
+Compare the same configuration and scene when measuring performance:
+
+```powershell
+cmake -S . -B build-xr
+cmake --build build-xr --config Release --target Ghost --parallel 2
+.\build-xr\Release\Ghost.exe
+```
 
 ## Runtime Documentation
 

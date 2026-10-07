@@ -1,0 +1,132 @@
+diff --git a/src/game/recomp/gen/recomp_0047.c b/src/game/recomp/gen/recomp_0047.c
+index e995335..6475739 100644
+--- a/src/game/recomp/gen/recomp_0047.c
++++ b/src/game/recomp/gen/recomp_0047.c
+@@ -3184,7 +3184,7 @@ loc_0023BCB7: ;
+     ecx = esp + 0x18;
+     PUSH32(esp, esi);
+     PUSH32(esp, ecx);
+-    PUSH32(esp, 0x0023BCC7u); RECOMP_ABI_CALL(0x0023CA00u, sub_0023CA00); /* call 0x0023CA00 */
++    PUSH32(esp, 0x0023BCC7u); RECOMP_ABI_CALL(0x0023CA00u, strncpy_0023CA00); /* call 0x0023CA00 */
+ 
+ loc_0023BCC7: ;
+     _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
+@@ -3340,7 +3340,7 @@ loc_0023BD70: ;
+     PUSH32(esp, 0x2F);
+     PUSH32(esp, edi);
+     MEM32(esp + 0x18) = esi;
+-    PUSH32(esp, 0x0023BDA4u); RECOMP_ABI_CALL(0x0023CA40u, sub_0023CA40); /* call 0x0023CA40 */
++    PUSH32(esp, 0x0023BDA4u); RECOMP_ABI_CALL(0x0023CA40u, strrchr_0023CA40); /* call 0x0023CA40 */
+ 
+ loc_0023BDA4: ;
+     ebx = eax;
+@@ -5203,19 +5203,19 @@ loc_0023C8A2: ;
+ }
+ 
+ /**
+- * sub_0023C8B0
++ * vsnprintf_0023C8B0
+  * Original: 0x0023C8B0 - 0x0023C8B5 (5 bytes, 1 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */
+-void sub_0023C8B0(void)
++void vsnprintf_0023C8B0(void)
+ {
+     uint32_t ebp = 0;
+     ebp = g_ebp;  /* frameless: caller's frame */
+     ebp = g_seh_ebp; /* fpo_leaf: inherit caller's frame */
+ 
+ loc_0023C8B0: ;
+-    g_seh_ebp = ebp; sub_002A3F4B(); return; /* tail jmp 0x002A3F4B */
++    g_seh_ebp = ebp; vsnprintf_002A3F4B(); return; /* tail jmp 0x002A3F4B */
+ 
+ }
+ 
+@@ -5240,7 +5240,7 @@ loc_0023C8C0: ;
+     PUSH32(esp, ecx);
+     PUSH32(esp, edx);
+     PUSH32(esp, eax);
+-    PUSH32(esp, 0x0023C8D9u); RECOMP_ABI_CALL(0x002A3F4Bu, sub_002A3F4B); /* call 0x002A3F4B */
++    PUSH32(esp, 0x0023C8D9u); RECOMP_ABI_CALL(0x002A3F4Bu, vsnprintf_002A3F4B); /* call 0x002A3F4B */
+ 
+ loc_0023C8D9: ;
+     _fb = (uint32_t)(0x10) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
+@@ -5269,7 +5269,7 @@ loc_0023C8E0: ;
+     PUSH32(esp, eax);
+     PUSH32(esp, ecx);
+     PUSH32(esp, edx);
+-    PUSH32(esp, 0x0023C8F4u); RECOMP_ABI_CALL(0x002A39A9u, sub_002A39A9); /* call 0x002A39A9 */
++    PUSH32(esp, 0x0023C8F4u); RECOMP_ABI_CALL(0x002A39A9u, vsprintf_002A39A9); /* call 0x002A39A9 */
+ 
+ loc_0023C8F4: ;
+     _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
+@@ -5358,19 +5358,19 @@ loc_0023C939: ;
+ }
+ 
+ /**
+- * sub_0023C950
++ * strncmp_0023C950
+  * Original: 0x0023C950 - 0x0023C955 (5 bytes, 1 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */
+-void sub_0023C950(void)
++void strncmp_0023C950(void)
+ {
+     uint32_t ebp = 0;
+     ebp = g_ebp;  /* frameless: caller's frame */
+     ebp = g_seh_ebp; /* fpo_leaf: inherit caller's frame */
+ 
+ loc_0023C950: ;
+-    g_seh_ebp = ebp; sub_002A3970(); return; /* tail jmp 0x002A3970 */
++    g_seh_ebp = ebp; strncmp_002A3970(); return; /* tail jmp 0x002A3970 */
+ 
+ }
+ 
+@@ -5559,19 +5559,19 @@ loc_0023C9FA: ;
+ }
+ 
+ /**
+- * sub_0023CA00
++ * strncpy_0023CA00
+  * Original: 0x0023CA00 - 0x0023CA05 (5 bytes, 1 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */
+-void sub_0023CA00(void)
++void strncpy_0023CA00(void)
+ {
+     uint32_t ebp = 0;
+     ebp = g_ebp;  /* frameless: caller's frame */
+     ebp = g_seh_ebp; /* fpo_leaf: inherit caller's frame */
+ 
+ loc_0023CA00: ;
+-    g_seh_ebp = ebp; sub_002A3710(); return; /* tail jmp 0x002A3710 */
++    g_seh_ebp = ebp; strncpy_002A3710(); return; /* tail jmp 0x002A3710 */
+ 
+ }
+ 
+@@ -5627,19 +5627,19 @@ loc_0023CA30: ;
+ }
+ 
+ /**
+- * sub_0023CA40
++ * strrchr_0023CA40
+  * Original: 0x0023CA40 - 0x0023CA45 (5 bytes, 1 insns)
+  * CC: cdecl, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+  */
+-void sub_0023CA40(void)
++void strrchr_0023CA40(void)
+ {
+     uint32_t ebp = 0;
+     ebp = g_ebp;  /* frameless: caller's frame */
+     ebp = g_seh_ebp; /* fpo_leaf: inherit caller's frame */
+ 
+ loc_0023CA40: ;
+-    g_seh_ebp = ebp; sub_002A5E50(); return; /* tail jmp 0x002A5E50 */
++    g_seh_ebp = ebp; strrchr_002A5E50(); return; /* tail jmp 0x002A5E50 */
+ 
+ }
+ 

@@ -1,0 +1,16 @@
+diff --git a/src/game/recomp/gen/recomp_0048.c b/src/game/recomp/gen/recomp_0048.c
+index 73df08c..1ce60c0 100644
+--- a/src/game/recomp/gen/recomp_0048.c
++++ b/src/game/recomp/gen/recomp_0048.c
+@@ -18201,10 +18201,7 @@ loc_0024B8EA: ;
+     _cf = 0; /* logical op clears CF */
+     SET_LO8(eax, LO8(eax) & 0);
+     _fa = (uint32_t)(LO8(eax)) & 0xFFu; _fas = (int32_t)(int8_t)(_fa); /* and result */
+-    POP32(esp, edi); POP32(esp, esi);
+-    POP32(esp, ebp); esp += 4;
+-    POP32(esp, ebx); POP32(esp, edx);
+-    POP32(esp, ecx); POP32(esp, eax);
++    RECOMP_UNIMPL("popal", 0x0024B90Cu); /* TODO: popal */
+     SET_HI8(ebx, 0x24);
+     _fb = (uint32_t)(HI8(edx)) & 0xFFu; _fbs = (int32_t)(int8_t)(_fb); /* add source, before the write */
+     _cf = (int)((((uint64_t)(MEM8(ecx + -73)) + (uint64_t)(HI8(edx))) >> 8) & 1);

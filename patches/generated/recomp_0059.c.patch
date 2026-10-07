@@ -1,0 +1,481 @@
+diff --git a/src/game/recomp/gen/recomp_0059.c b/src/game/recomp/gen/recomp_0059.c
+index b999d51..fdd833e 100644
+--- a/src/game/recomp/gen/recomp_0059.c
++++ b/src/game/recomp/gen/recomp_0059.c
+@@ -30,7 +30,7 @@ loc_002BF473: ;
+     g_seh_ebp = ebp; sub_0023CB40(); return; /* tail jmp 0x0023CB40 */
+ 
+     eax = 0x3D4030;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -125,7 +125,7 @@ loc_002BF4D8: ;
+     g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
+ 
+     eax = 0x3D40A4;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -180,7 +180,7 @@ loc_002BF4FB: ;
+     g_seh_ebp = ebp; sub_00259690(); return; /* tail jmp 0x00259690 */
+ 
+     eax = 0x3D40D0;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     ecx = MEM32(ebp + -16);
+     g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
+@@ -192,7 +192,7 @@ loc_002BF4FB: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D40FC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -226,7 +226,7 @@ loc_002BF510: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D40FC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -257,7 +257,7 @@ loc_002BF518: ;
+     g_seh_ebp = ebp; sub_00045F50(); return; /* tail jmp 0x00045F50 */
+ 
+     eax = 0x3D40FC;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -367,7 +367,7 @@ loc_002BF598: ;
+     eax = eax + 0x4C;
+     _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
+     PUSH32(esp, eax);
+-    PUSH32(esp, 0x002BF5B8u); RECOMP_ABI_CALL(0x002A6018u, sub_002A6018); /* call 0x002A6018 */
++    PUSH32(esp, 0x002BF5B8u); RECOMP_ABI_CALL(0x002A6018u, M_YGXPAXIHP6EX0_Z_Z); /* call 0x002A6018 */
+ 
+ loc_002BF5B8: ;
+     esp += 4; return; /* ret */
+@@ -412,7 +412,7 @@ loc_002BF5A3: ;
+     eax = eax + 0x4C;
+     _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
+     PUSH32(esp, eax);
+-    PUSH32(esp, 0x002BF5B8u); RECOMP_ABI_CALL(0x002A6018u, sub_002A6018); /* call 0x002A6018 */
++    PUSH32(esp, 0x002BF5B8u); RECOMP_ABI_CALL(0x002A6018u, M_YGXPAXIHP6EX0_Z_Z); /* call 0x002A6018 */
+ 
+ loc_002BF5B8: ;
+     esp += 4; return; /* ret */
+@@ -513,7 +513,7 @@ loc_002BF618: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4294;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -555,7 +555,7 @@ loc_002BF620: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4294;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -594,7 +594,7 @@ loc_002BF628: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4294;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -630,7 +630,7 @@ loc_002BF630: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4294;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -723,7 +723,7 @@ loc_002BF698: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4310;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -759,7 +759,7 @@ loc_002BF6A0: ;
+     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
+ 
+     eax = 0x3D4310;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -898,7 +898,7 @@ loc_002BF74B: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D43F8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -931,7 +931,7 @@ loc_002BF753: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D43F8;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1005,7 +1005,7 @@ loc_002BF79B: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D4448;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1056,7 +1056,7 @@ loc_002BF7BB: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D447C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1089,7 +1089,7 @@ loc_002BF7C3: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D447C;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1166,7 +1166,7 @@ loc_002BF80B: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D44D4;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1199,7 +1199,7 @@ loc_002BF813: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D44D4;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1258,7 +1258,7 @@ loc_002BF83B: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D4508;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1291,7 +1291,7 @@ loc_002BF843: ;
+     g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
+ 
+     eax = 0x3D4508;
+-    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
++    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
+ 
+     /* int3: debug-trap slide byte, stepped over */
+     /* int3: debug-trap slide byte, stepped over */
+@@ -1374,7 +1374,7 @@ void sub_002BF890(void)
+ 
+ loc_002BF890: ;
+     PUSH32(esp, 0x2C0230);
+-    PUSH32(esp, 0x002BF89Au); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF89Au); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF89A: ;
+     POP32(esp, ecx);
+@@ -1405,7 +1405,7 @@ loc_002BF8A0: ;
+     MEM32(0x3E7240) = eax;
+     MEM32(0x3E723C) = eax;
+     MEM32(0x3E7248) = eax;
+-    PUSH32(esp, 0x002BF8CAu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF8CAu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF8CA: ;
+     POP32(esp, ecx);
+@@ -1425,7 +1425,7 @@ void sub_002BF8D0(void)
+ 
+ loc_002BF8D0: ;
+     PUSH32(esp, 0x2C0250);
+-    PUSH32(esp, 0x002BF8DAu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF8DAu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF8DA: ;
+     POP32(esp, ecx);
+@@ -1451,7 +1451,7 @@ loc_002BF8E0: ;
+ 
+ loc_002BF8F1: ;
+     PUSH32(esp, 0x2C0260);
+-    PUSH32(esp, 0x002BF8FBu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF8FBu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF8FB: ;
+     POP32(esp, ecx);
+@@ -1471,7 +1471,7 @@ void sub_002BF900(void)
+ 
+ loc_002BF900: ;
+     PUSH32(esp, 0x2C02A0);
+-    PUSH32(esp, 0x002BF90Au); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF90Au); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF90A: ;
+     POP32(esp, ecx);
+@@ -1514,7 +1514,7 @@ loc_002BF920: ;
+ 
+ loc_002BF92A: ;
+     PUSH32(esp, 0x2C02D0);
+-    PUSH32(esp, 0x002BF934u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF934u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF934: ;
+     POP32(esp, ecx);
+@@ -1538,7 +1538,7 @@ loc_002BF940: ;
+ 
+ loc_002BF94A: ;
+     PUSH32(esp, 0x2C02E0);
+-    PUSH32(esp, 0x002BF954u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF954u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF954: ;
+     POP32(esp, ecx);
+@@ -1566,7 +1566,7 @@ loc_002BF960: ;
+     _fa = (uint32_t)(edx) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
+     PUSH32(esp, 0x2C02B0);
+     MEM32(0x4233F4) = edx;
+-    PUSH32(esp, 0x002BF979u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BF979u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BF979: ;
+     POP32(esp, ecx);
+@@ -1636,7 +1636,7 @@ loc_002BF9A2: ;
+     MEM32(0x424684) = eax;
+     MEM32(0x42468C) = 0x29;
+     MEM32(0x424688) = 1;
+-    PUSH32(esp, 0x002BFA58u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFA58u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFA58: ;
+     POP32(esp, ecx);
+@@ -1662,7 +1662,7 @@ loc_002BFA60: ;
+ 
+ loc_002BFA71: ;
+     PUSH32(esp, 0x2C0310);
+-    PUSH32(esp, 0x002BFA7Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFA7Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFA7B: ;
+     POP32(esp, ecx);
+@@ -1688,7 +1688,7 @@ loc_002BFA80: ;
+ 
+ loc_002BFA91: ;
+     PUSH32(esp, 0x2C0320);
+-    PUSH32(esp, 0x002BFA9Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFA9Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFA9B: ;
+     POP32(esp, ecx);
+@@ -1714,7 +1714,7 @@ loc_002BFAA0: ;
+ 
+ loc_002BFAB1: ;
+     PUSH32(esp, 0x2C0330);
+-    PUSH32(esp, 0x002BFABBu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFABBu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFABB: ;
+     POP32(esp, ecx);
+@@ -1740,7 +1740,7 @@ loc_002BFAC0: ;
+ 
+ loc_002BFAD1: ;
+     PUSH32(esp, 0x2C0340);
+-    PUSH32(esp, 0x002BFADBu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFADBu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFADB: ;
+     POP32(esp, ecx);
+@@ -1805,7 +1805,7 @@ loc_002BFB20: ;
+ 
+ loc_002BFB31: ;
+     PUSH32(esp, 0x2C0350);
+-    PUSH32(esp, 0x002BFB3Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFB3Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFB3B: ;
+     POP32(esp, ecx);
+@@ -1870,7 +1870,7 @@ loc_002BFB80: ;
+ 
+ loc_002BFB91: ;
+     PUSH32(esp, 0x2C0360);
+-    PUSH32(esp, 0x002BFB9Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFB9Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFB9B: ;
+     POP32(esp, ecx);
+@@ -1973,7 +1973,7 @@ loc_002BFBFD: ;
+ 
+ /**
+  * sub_002BFC00
+- * Original: 0x002BFC00 - 0x002BFC10 (16 bytes, 8 insns)
++ * Original: 0x002BFC00 - 0x002BFC0C (12 bytes, 4 insns)
+  * Category: game_vtable
+  * CC: thiscall, 0 params, returns int_or_void
+  * Frame: fpo_leaf
+@@ -1983,7 +1983,7 @@ void sub_002BFC00(void)
+ 
+ loc_002BFC00: ;
+     PUSH32(esp, 0x2C0370);
+-    PUSH32(esp, 0x002BFC0Au); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFC0Au); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFC0A: ;
+     POP32(esp, ecx);
+@@ -2003,7 +2003,7 @@ void sub_002BFC10(void)
+ 
+ loc_002BFC10: ;
+     PUSH32(esp, 0x2C03A0);
+-    PUSH32(esp, 0x002BFC1Au); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFC1Au); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFC1A: ;
+     POP32(esp, ecx);
+@@ -2029,7 +2029,7 @@ loc_002BFC20: ;
+ 
+ loc_002BFC31: ;
+     PUSH32(esp, 0x2C03B0);
+-    PUSH32(esp, 0x002BFC3Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFC3Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFC3B: ;
+     POP32(esp, ecx);
+@@ -2053,7 +2053,7 @@ loc_002BFC40: ;
+ 
+ loc_002BFC4A: ;
+     PUSH32(esp, 0x2C03C0);
+-    PUSH32(esp, 0x002BFC54u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFC54u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFC54: ;
+     POP32(esp, ecx);
+@@ -2077,7 +2077,7 @@ loc_002BFC60: ;
+ 
+ loc_002BFC6A: ;
+     PUSH32(esp, 0x2C03D0);
+-    PUSH32(esp, 0x002BFC74u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFC74u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFC74: ;
+     POP32(esp, ecx);
+@@ -2155,7 +2155,7 @@ loc_002BFCE0: ;
+ 
+ loc_002BFCEA: ;
+     PUSH32(esp, 0x2C0420);
+-    PUSH32(esp, 0x002BFCF4u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFCF4u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFCF4: ;
+     POP32(esp, ecx);
+@@ -2198,7 +2198,7 @@ loc_002BFD10: ;
+ 
+ loc_002BFD1A: ;
+     PUSH32(esp, 0x2C0430);
+-    PUSH32(esp, 0x002BFD24u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFD24u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFD24: ;
+     POP32(esp, ecx);
+@@ -2222,7 +2222,7 @@ loc_002BFD30: ;
+ 
+ loc_002BFD3A: ;
+     PUSH32(esp, 0x2C0440);
+-    PUSH32(esp, 0x002BFD44u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFD44u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFD44: ;
+     POP32(esp, ecx);
+@@ -2246,7 +2246,7 @@ loc_002BFD50: ;
+ 
+ loc_002BFD5A: ;
+     PUSH32(esp, 0x2C0450);
+-    PUSH32(esp, 0x002BFD64u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFD64u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFD64: ;
+     POP32(esp, ecx);
+@@ -2272,7 +2272,7 @@ loc_002BFD70: ;
+ 
+ loc_002BFD81: ;
+     PUSH32(esp, 0x2C0460);
+-    PUSH32(esp, 0x002BFD8Bu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFD8Bu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFD8B: ;
+     POP32(esp, ecx);
+@@ -2317,7 +2317,7 @@ loc_002BFDA0: ;
+ 
+ loc_002BFDB1: ;
+     PUSH32(esp, 0x2C0470);
+-    PUSH32(esp, 0x002BFDBBu); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002BFDBBu); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002BFDBB: ;
+     POP32(esp, ecx);
+@@ -2706,7 +2706,7 @@ loc_002C0100: ;
+ 
+ loc_002C010A: ;
+     PUSH32(esp, 0x2C0480);
+-    PUSH32(esp, 0x002C0114u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002C0114u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002C0114: ;
+     POP32(esp, ecx);
+@@ -2876,7 +2876,7 @@ loc_002C0210: ;
+ 
+ loc_002C021A: ;
+     PUSH32(esp, 0x2C0490);
+-    PUSH32(esp, 0x002C0224u); RECOMP_ABI_CALL(0x002A332Eu, sub_002A332E); /* call 0x002A332E */
++    PUSH32(esp, 0x002C0224u); RECOMP_ABI_CALL(0x002A332Eu, atexit_002A332E); /* call 0x002A332E */
+ 
+ loc_002C0224: ;
+     POP32(esp, ecx);
+@@ -9258,8 +9258,6 @@ loc_002C29EE: ;
+     _fa = (uint32_t)(ebx) & 0xFFFFFFFFu; _fb = (uint32_t)(0) & 0xFFFFFFFFu;
+     _fas = (int32_t)(int32_t)(_fa); _fbs = (int32_t)(int32_t)(_fb); /* cmp ebx, 0 (32-bit) */
+     ebp = esp + 0x2C;
+-    g_ebp = ebp;
+-    g_seh_ebp = ebp;
+     if (CMP_BE(_fa, _fb)) goto loc_002C2A15; /* jbe: below or equal (unsigned <=) */
+ 
+ loc_002C29F8: ;
