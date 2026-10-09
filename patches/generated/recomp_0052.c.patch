@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0052.c b/src/game/recomp/gen/recomp_0052
 index 9199d09..71d1956 100644
 --- a/src/game/recomp/gen/recomp_0052.c
 +++ b/src/game/recomp/gen/recomp_0052.c
-@@ -7403,7 +7403,7 @@ loc_00285AD8: ;
+@@ -9010,7 +9010,7 @@ loc_00285AD8: ;
      PUSH32(esp, edx);
  
  loc_00285AEA: ;
@@ -11,7 +11,7 @@ index 9199d09..71d1956 100644
  
  loc_00285AEF: ;
      eax = MEM32(0x4C13AC);
-@@ -7651,7 +7651,7 @@ loc_00285C34: ;
+@@ -9258,7 +9258,7 @@ loc_00285C34: ;
      PUSH32(esp, ecx);
  
  loc_00285C46: ;
@@ -20,7 +20,7 @@ index 9199d09..71d1956 100644
  
  loc_00285C4B: ;
      eax = MEM32(0x4C13AC);
-@@ -8836,7 +8836,7 @@ loc_002862A3: ;
+@@ -10443,7 +10443,7 @@ loc_002862A3: ;
      _fa = (uint32_t)(esp) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, eax);
      PUSH32(esp, edi);
@@ -29,7 +29,7 @@ index 9199d09..71d1956 100644
  
  loc_002862AD: ;
      eax = MEM32(0x4C0CF4);
-@@ -14473,7 +14473,7 @@ loc_00288413: ;
+@@ -16080,7 +16080,7 @@ loc_00288413: ;
      edx = edx + 4;
      _fa = (uint32_t)(edx) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, edx);
@@ -38,7 +38,7 @@ index 9199d09..71d1956 100644
  
  loc_00288424: ;
      eax = esp + 0x18;
-@@ -15479,7 +15479,7 @@ loc_0028898A: ;
+@@ -17086,7 +17086,7 @@ loc_0028898A: ;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, esi);
      PUSH32(esp, eax);
@@ -47,7 +47,7 @@ index 9199d09..71d1956 100644
  
  loc_0028899F: ;
      ecx = MEM32(0x4C0BFC);
-@@ -15543,7 +15543,7 @@ loc_002889E3: ;
+@@ -17150,7 +17150,7 @@ loc_002889E3: ;
      edi = edi + 4;
      _fa = (uint32_t)(edi) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, edi);
@@ -56,7 +56,7 @@ index 9199d09..71d1956 100644
  
  loc_002889F4: ;
      _fb = (uint32_t)(MEM32(0x4C0C08)) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* sub source, before the write */
-@@ -23579,7 +23579,7 @@ loc_0028B410: ;
+@@ -25186,7 +25186,7 @@ loc_0028B410: ;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, edi);
      PUSH32(esp, eax);
@@ -65,7 +65,7 @@ index 9199d09..71d1956 100644
  
  loc_0028B424: ;
      _fb = (uint32_t)(0x10) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -24204,7 +24204,7 @@ loc_0028B767: ;
+@@ -25811,7 +25811,7 @@ loc_0028B767: ;
      edx = edx + 4;
      _fa = (uint32_t)(edx) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, edx);

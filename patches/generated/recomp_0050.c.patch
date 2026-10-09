@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0050.c b/src/game/recomp/gen/recomp_0050
 index 326f3e1..fc44762 100644
 --- a/src/game/recomp/gen/recomp_0050.c
 +++ b/src/game/recomp/gen/recomp_0050.c
-@@ -11677,8 +11677,6 @@ loc_00264ADB: ;
+@@ -12671,8 +12671,6 @@ loc_00264ADB: ;
      eax = MEM32(esp + 0x1C);
      MEM32(ebx + 8) = edx;
      ebp = esp + 0x18;

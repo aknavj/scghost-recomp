@@ -69,17 +69,18 @@ SEEDS=()
 [[ -f "$SCGHOST/config/seed_functions.json" ]] && \
     SEEDS=(--seed-functions "$SCGHOST/config/seed_functions.json")
 
-if [[ "${1:-}" == "--disasm" || ! -f "$OUT/disasm/functions.json" ]]; then
-    echo "==> xbe_parser"
-    (cd "$RECOMP" && py -3 -m tools.xbe_parser "$XBE" \
-        --json "$OUT/analysis.json" --quiet) || exit 1
+FORCE=()
+[[ "${1:-}" == "--disasm" ]] && FORCE=(--force)
+echo "==> xbe_parser"
+(cd "$RECOMP" && py -3 -m tools.xbe_parser "$XBE" \
+    --json "$OUT/analysis.json" --quiet) || exit 1
 
-    echo "==> disasm"
-    (cd "$RECOMP" && py -3 -m tools.disasm "$XBE" \
-        --analysis-json "$OUT/analysis.json" "${SEEDS[@]}" \
-        -o "$OUT/disasm" -v) > "$OUT/disasm.log" 2>&1 || { tail -20 "$OUT/disasm.log"; exit 1; }
-    tr '\r' '\n' < "$OUT/disasm.log" | grep -E "Total functions|Reachable|Seeded" || true
-fi
+# The disassembler cache checks the binary and seed set, including seed removal.
+echo "==> disasm"
+(cd "$RECOMP" && py -3 -m tools.disasm "$XBE" \
+    --analysis-json "$OUT/analysis.json" "${SEEDS[@]}" "${FORCE[@]}" \
+    -o "$OUT/disasm" -v) > "$OUT/disasm.log" 2>&1 || { tail -20 "$OUT/disasm.log"; exit 1; }
+tr '\r' '\n' < "$OUT/disasm.log" | grep -E "Cache hit|Total functions|Reachable|Seeded" || true
 
 echo "==> func_id"
 (cd "$RECOMP" && py -3 -m tools.func_id "$XBE" \

@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0063.c b/src/game/recomp/gen/recomp_0063
 index 4d80487..b47e34e 100644
 --- a/src/game/recomp/gen/recomp_0063.c
 +++ b/src/game/recomp/gen/recomp_0063.c
-@@ -2314,7 +2314,7 @@ loc_002F3CEC: ;
+@@ -2386,7 +2386,7 @@ loc_002F3CEC: ;
  void sub_002F3CFF(void)
  {
      uint32_t ebp = 0;
@@ -11,7 +11,7 @@ index 4d80487..b47e34e 100644
      int _flags = 0; /* fallback flag var */
      uint32_t _fa = 0, _fb = 0;
      int32_t _fas = 0, _fbs = 0;
-@@ -2330,16 +2330,12 @@ void sub_002F3CFF(void)
+@@ -2402,16 +2402,12 @@ void sub_002F3CFF(void)
  loc_002F3CFF: ;
      PUSH32(esp, ebp);
      ebp = esp + -112;
@@ -28,7 +28,7 @@ index 4d80487..b47e34e 100644
      PUSH32(esp, 0x002F3D14u); RECOMP_ABI_CALL(0x002F1709u, sub_002F1709); /* call 0x002F1709 */
  
  loc_002F3D14: ;
-@@ -2379,8 +2375,6 @@ loc_002F3D3E: ;
+@@ -2451,8 +2447,6 @@ loc_002F3D3E: ;
      PUSH32(esp, eax);
      eax = esi + 0x20;
      PUSH32(esp, eax);
@@ -37,7 +37,7 @@ index 4d80487..b47e34e 100644
      PUSH32(esp, 0x002F3D4Fu); RECOMP_ABI_CALL(0x002F4D7Cu, sub_002F4D7C); /* call 0x002F4D7C */
  
  loc_002F3D4F: ;
-@@ -2548,8 +2542,6 @@ loc_002F3E20: ;
+@@ -2620,8 +2614,6 @@ loc_002F3E20: ;
      eax = esi + 0x20;
      PUSH32(esp, eax);
      PUSH32(esp, MEM32(ebx + 0x40));
@@ -46,7 +46,7 @@ index 4d80487..b47e34e 100644
      PUSH32(esp, 0x002F3E47u); RECOMP_ABI_CALL(0x002F17E1u, sub_002F17E1); /* call 0x002F17E1 */
  
  loc_002F3E47: ;
-@@ -2710,8 +2702,6 @@ loc_002F3F2B: ;
+@@ -2782,8 +2774,6 @@ loc_002F3F2B: ;
  
  loc_002F3F2E: ;
      ecx = ebp + 0x78;
@@ -55,7 +55,7 @@ index 4d80487..b47e34e 100644
      PUSH32(esp, 0x002F3F36u); RECOMP_ABI_CALL(0x002F172Eu, sub_002F172E); /* call 0x002F172E */
  
  loc_002F3F36: ;
-@@ -5734,7 +5724,7 @@ loc_002F4CB9: ;
+@@ -5806,7 +5796,7 @@ loc_002F4CB9: ;
  
  /**
   * sub_002F4CBF
@@ -64,7 +64,7 @@ index 4d80487..b47e34e 100644
   * CC: cdecl, 0 params, returns int_or_void
   * Frame: fpo_leaf
   */
-@@ -15747,7 +15737,7 @@ loc_002F7A48: ;
+@@ -15819,7 +15809,7 @@ loc_002F7A48: ;
  
  /**
   * sub_002F7A4D

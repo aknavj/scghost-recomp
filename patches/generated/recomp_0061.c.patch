@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0061.c b/src/game/recomp/gen/recomp_0061
 index 38c8aaa..b3d6437 100644
 --- a/src/game/recomp/gen/recomp_0061.c
 +++ b/src/game/recomp/gen/recomp_0061.c
-@@ -7533,7 +7533,7 @@ loc_002DD412: ;
+@@ -7897,7 +7897,7 @@ loc_002DD412: ;
  loc_002DD414: ;
      PUSH32(esp, 1);
      PUSH32(esp, esi);
@@ -11,7 +11,7 @@ index 38c8aaa..b3d6437 100644
  
  loc_002DD41C: ;
      POP32(esp, esi);
-@@ -13487,7 +13487,7 @@ loc_002DF1EA: ;
+@@ -13851,7 +13851,7 @@ loc_002DF1EA: ;
      PUSH32(esp, MEM32(eax + 0x18));
      PUSH32(esp, ecx);
      PUSH32(esp, MEM32(esp + 0x30));
@@ -20,7 +20,7 @@ index 38c8aaa..b3d6437 100644
  
  loc_002DF20C: ;
      _fb = (uint32_t)(0x28) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -13508,7 +13508,7 @@ loc_002DF216: ;
+@@ -13872,7 +13872,7 @@ loc_002DF216: ;
      PUSH32(esp, eax);
      PUSH32(esp, ecx);
      PUSH32(esp, MEM32(esp + 0x14));
@@ -29,7 +29,7 @@ index 38c8aaa..b3d6437 100644
  
  loc_002DF224: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -13616,7 +13616,7 @@ loc_002DF29A: ;
+@@ -13980,7 +13980,7 @@ loc_002DF29A: ;
      PUSH32(esp, eax);
      g_ebp = ebp; /* frame stays current across calls */
      g_seh_ebp = ebp;
@@ -38,7 +38,7 @@ index 38c8aaa..b3d6437 100644
  
  loc_002DF2A2: ;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fb = (uint32_t)(0) & 0xFFFFFFFFu;
-@@ -24375,7 +24375,6 @@ void sub_002E244E(void)
+@@ -24739,7 +24739,6 @@ void sub_002E244E(void)
      uint32_t _fa = 0, _fb = 0;
      int32_t _fas = 0, _fbs = 0;
      (void)_fa; (void)_fb; (void)_fas; (void)_fbs;
@@ -46,7 +46,7 @@ index 38c8aaa..b3d6437 100644
  
  loc_002E244E: ;
      PUSH32(esp, ebp);
-@@ -24385,44 +24384,24 @@ loc_002E244E: ;
+@@ -24749,44 +24748,24 @@ loc_002E244E: ;
      PUSH32(esp, ecx);
      PUSH32(esp, ebx);
      PUSH32(esp, ebx);

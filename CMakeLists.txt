@@ -114,6 +114,15 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 # MSVC-specific: large address aware, increase section limit for big generated files
 if(MSVC)
+    option(GHOST_RELEASE_SYMBOLS "Emit symbols for optimized Release hang diagnostics" ON)
+    if(GHOST_RELEASE_SYMBOLS)
+        target_compile_options(${PROJECT_NAME} PRIVATE "$<$<CONFIG:Release>:/Zi>")
+        target_compile_options(xbox_kernel PRIVATE "$<$<CONFIG:Release>:/Zi>")
+        target_link_options(${PROJECT_NAME} PRIVATE
+            "$<$<CONFIG:Release>:/DEBUG:FULL>"
+            "$<$<CONFIG:Release>:/OPT:REF>"
+            "$<$<CONFIG:Release>:/OPT:ICF>")
+    endif()
     target_link_options(${PROJECT_NAME} PRIVATE
         /LARGEADDRESSAWARE
     )

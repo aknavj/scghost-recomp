@@ -47,6 +47,7 @@
 #include "ohci.h"
 #include "xinput_xbox.h"
 #include "apu.h"
+#include "apu_debug.h"
 #include "recomp_icall_feedback.h"
 
 /*
@@ -147,9 +148,11 @@ static void print_guest_context(void *rip)
     memset(buf, 0, sizeof(buf));
     sym->SizeOfStruct = sizeof(SYMBOL_INFO);
     sym->MaxNameLen = 255;
+    AcquireSRWLockExclusive(&g_xbox_debug_symbols_lock);
     if (SymFromAddr(GetCurrentProcess(), (DWORD64)(uintptr_t)rip, &disp, sym))
         fprintf(stderr, "  in %s+0x%llX\n",
                 sym->Name, (unsigned long long)disp);
+    ReleaseSRWLockExclusive(&g_xbox_debug_symbols_lock);
 
     if (g_xbox_mem_offset && g_esp) {
         const uint32_t *sp =
@@ -330,12 +333,41 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     redirect_diagnostics();
     _putenv_s("RECOMP_WINDOW_TITLE", YOUR_GAME_TITLE);
+    if (!getenv("RECOMP_APU_DIAG") &&
+        _putenv_s("RECOMP_APU_DIAG", "0") != 0) {
+        fprintf(stderr, "[BOOT] failed to configure audio diagnostics default\n");
+        return 1;
+    }
+    fprintf(stderr, "[BOOT] audio diagnostics %s (RECOMP_APU_DIAG=%s)\n",
+            mcpx_apu_diagnostics_enabled() ? "enabled" : "disabled",
+            getenv("RECOMP_APU_DIAG"));
     if (!getenv("RECOMP_AC97_READY"))
         _putenv_s("RECOMP_AC97_READY", "1");
     if (!getenv("RECOMP_DSP_ACK") && !getenv("RECOMP_APU_DSP_ACK")) {
         if (_putenv_s("RECOMP_APU_DSP_ACK", "gp:0x810") != 0) {
             fprintf(stderr, "[BOOT] failed to configure DSP passthrough mailbox\n");
             return 1;
+        }
+    }
+    if (!getenv("RECOMP_NV2A_STREAM_COALESCE") &&
+        _putenv_s("RECOMP_NV2A_STREAM_COALESCE", "1") != 0) {
+        fprintf(stderr, "[BOOT] failed to configure stream coalescing default\n");
+        return 1;
+    }
+    {
+        static const char *const rendering_options[] = {
+            "RECOMP_NV2A_GPU_RESIDENT",
+            "RECOMP_NV2A_GPU_RESIDENT_IDLE",
+            "RECOMP_NV2A_GPU_ASYNC_IDLE",
+            "RECOMP_NV2A_STREAM_COALESCE"
+        };
+        for (size_t i = 0; i < sizeof(rendering_options) / sizeof(rendering_options[0]); i++) {
+            const char *value = getenv(rendering_options[i]);
+            BOOL enabled = value ? *value && strcmp(value, "0") != 0 :
+                           strcmp(rendering_options[i], "RECOMP_NV2A_GPU_ASYNC_IDLE") == 0;
+            fprintf(stderr, "[BOOT] rendering option %s=%s (%s)\n",
+                    rendering_options[i], value ? value : "<unset>",
+                    enabled ? "enabled" : "disabled");
         }
     }
     if (!getenv("RECOMP_USB"))
@@ -382,8 +414,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     /* Load symbols up front rather than from inside the handler: at fault
      * time the process is already in a bad way, and SymInitialize
      * allocates. Failure is not fatal -- the handler prints no name. */
-    SymSetOptions(SYMOPT_DEFERRED_LOADS | SYMOPT_UNDNAME);
-    SymInitialize(GetCurrentProcess(), NULL, TRUE);
+    AcquireSRWLockExclusive(&g_xbox_debug_symbols_lock);
+    SymSetOptions(SYMOPT_DEFERRED_LOADS | SYMOPT_UNDNAME | SYMOPT_LOAD_LINES);
+    {
+        BOOL initialized = SymInitialize(GetCurrentProcess(), NULL, TRUE);
+        DWORD error = initialized ? 0 : GetLastError();
+        ReleaseSRWLockExclusive(&g_xbox_debug_symbols_lock);
+        if (!initialized)
+            fprintf(stderr, "[BOOT] Cannot initialize diagnostic symbols: %lu\n", error);
+    }
     AddVectoredExceptionHandler(1, veh_handler);
 
     /* Step 1: Load XBE */

@@ -2,7 +2,25 @@ diff --git a/src/game/recomp/gen/recomp_0056.c b/src/game/recomp/gen/recomp_0056
 index 493638d..41090ff 100644
 --- a/src/game/recomp/gen/recomp_0056.c
 +++ b/src/game/recomp/gen/recomp_0056.c
-@@ -7419,7 +7419,7 @@ loc_002B0BA0: ;
+@@ -83,7 +83,7 @@ loc_002AE0D9: ;
+     g_seh_ebp = ebp; /* publish frame to SEH helper */
+     g_ebp = ebp; /* frame stays current across calls */
+     g_seh_ebp = ebp;
+-    PUSH32(esp, 0x002AE0E5u); RECOMP_ABI_CALL(0x002A4B3Cu, sub_002A4B3C); /* call 0x002A4B3C */
++    PUSH32(esp, 0x002AE0E5u); RECOMP_ABI_CALL(0x002A4B3Cu, SEH_prolog); /* call 0x002A4B3C */
+     ebp = g_seh_ebp; /* read back frame from SEH helper */
+ 
+ loc_002AE0E5: ;
+@@ -143,7 +143,7 @@ loc_002AE12A: ;
+     g_seh_ebp = ebp; /* publish frame to SEH helper */
+     g_ebp = ebp; /* frame stays current across calls */
+     g_seh_ebp = ebp;
+-    PUSH32(esp, 0x002AE12Fu); RECOMP_ABI_CALL(0x002A4B77u, sub_002A4B77); /* call 0x002A4B77 */
++    PUSH32(esp, 0x002AE12Fu); RECOMP_ABI_CALL(0x002A4B77u, SEH_epilog); /* call 0x002A4B77 */
+     ebp = g_seh_ebp; /* read back frame from SEH helper */
+ 
+ loc_002AE12F: ;
+@@ -7596,7 +7596,7 @@ loc_002B0BA0: ;
      eax = esi + 0x4C;
      PUSH32(esp, eax);
      MEM32(esp + 0x20) = 1;
@@ -11,7 +29,7 @@ index 493638d..41090ff 100644
  
  loc_002B0BDD: ;
      eax = MEM32(esi + 0x48);
-@@ -8473,7 +8473,7 @@ loc_002B1260: ;
+@@ -8650,7 +8650,7 @@ loc_002B1260: ;
      MEM8(esp + 0x60) = 1;
      g_ebp = ebp; /* frame stays current across calls */
      g_seh_ebp = ebp;
@@ -20,7 +38,7 @@ index 493638d..41090ff 100644
  
  loc_002B12C4: ;
      MEM32(esp + 0x14) = 0x3F800000;
-@@ -18348,24 +18348,7 @@ loc_002B61C3: ;
+@@ -18525,24 +18525,7 @@ loc_002B61C3: ;
      if (CMP_A(_fa, _fb)) goto loc_002B61C0; /* ja: above (unsigned >) */
  
  loc_002B61CB: ;
@@ -46,7 +64,7 @@ index 493638d..41090ff 100644
      if (_jt == 0x002B61B0u) goto loc_002B61B0;
      if (_jt == 0x002B6231u) goto loc_002B6231;
      if (_jt == 0x002B63B3u) goto loc_002B63B3;
-@@ -18794,31 +18777,7 @@ loc_002B65B0: ;
+@@ -18971,31 +18954,7 @@ loc_002B65B0: ;
  
  loc_002B65BC: ;
      edx = ZX8(MEM8(ecx + 0x2B67A4));
@@ -79,7 +97,7 @@ index 493638d..41090ff 100644
      if (_jt == 0x002B65A0u) goto loc_002B65A0;
      if (_jt == 0x002B65CAu) goto loc_002B65CA;
      if (_jt == 0x002B6607u) goto loc_002B6607;
-@@ -28752,13 +28711,13 @@ loc_002BBF2F: ;
+@@ -28929,13 +28888,13 @@ loc_002BBF2F: ;
  }
  
  /**
@@ -95,7 +113,7 @@ index 493638d..41090ff 100644
  {
      int _flags = 0; /* fallback flag var */
      uint32_t _fa = 0, _fb = 0;
-@@ -28843,7 +28802,7 @@ loc_002BBF6F: ;
+@@ -29020,7 +28979,7 @@ loc_002BBF6F: ;
      PUSH32(esp, eax);
      g_ebp = ebp; /* frame stays current across calls */
      g_seh_ebp = ebp;
@@ -104,7 +122,7 @@ index 493638d..41090ff 100644
  
  loc_002BBF8E: ;
      ecx = MEM32(ebp + 8);
-@@ -29847,12 +29806,12 @@ loc_002BC34A: ;
+@@ -30024,12 +29983,12 @@ loc_002BC34A: ;
  }
  
  /**
@@ -119,7 +137,7 @@ index 493638d..41090ff 100644
  {
      uint32_t ebp = 0;
      ebp = g_ebp;  /* prologue saves caller's frame */
-@@ -30022,13 +29981,13 @@ loc_002BC3EC: ;
+@@ -30199,13 +30158,13 @@ loc_002BC3EC: ;
  }
  
  /**
@@ -135,7 +153,7 @@ index 493638d..41090ff 100644
  {
      int _flags = 0; /* fallback flag var */
      uint32_t _fa = 0, _fb = 0;
-@@ -30384,7 +30343,7 @@ loc_002BC510: ;
+@@ -30561,7 +30520,7 @@ loc_002BC510: ;
      g_seh_ebp = ebp; sub_001BB610(); return; /* tail jmp 0x001BB610 */
  
      eax = 0x3D0968;
@@ -144,7 +162,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31235,7 +31194,7 @@ loc_002BC808: ;
+@@ -31412,7 +31371,7 @@ loc_002BC808: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0CF0;
@@ -153,7 +171,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31271,7 +31230,7 @@ loc_002BC813: ;
+@@ -31448,7 +31407,7 @@ loc_002BC813: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0CF0;
@@ -162,7 +180,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31325,7 +31284,7 @@ loc_002BC838: ;
+@@ -31502,7 +31461,7 @@ loc_002BC838: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0D1C;
@@ -171,7 +189,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31491,7 +31450,7 @@ loc_002BC8E4: ;
+@@ -31668,7 +31627,7 @@ loc_002BC8E4: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0E9C;
@@ -180,7 +198,7 @@ index 493638d..41090ff 100644
  
      ecx = MEM32(ebp + -16);
      g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
-@@ -31503,7 +31462,7 @@ loc_002BC8E4: ;
+@@ -31680,7 +31639,7 @@ loc_002BC8E4: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0EC8;
@@ -189,7 +207,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31534,7 +31493,7 @@ loc_002BC8F0: ;
+@@ -31711,7 +31670,7 @@ loc_002BC8F0: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0E9C;
@@ -198,7 +216,7 @@ index 493638d..41090ff 100644
  
      ecx = MEM32(ebp + -16);
      g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
-@@ -31546,7 +31505,7 @@ loc_002BC8F0: ;
+@@ -31723,7 +31682,7 @@ loc_002BC8F0: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0EC8;
@@ -207,7 +225,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31574,7 +31533,7 @@ loc_002BC8FB: ;
+@@ -31751,7 +31710,7 @@ loc_002BC8FB: ;
      g_seh_ebp = ebp; sub_00239AF0(); return; /* tail jmp 0x00239AF0 */
  
      eax = 0x3D0E9C;
@@ -216,7 +234,7 @@ index 493638d..41090ff 100644
  
      ecx = MEM32(ebp + -16);
      g_seh_ebp = ebp; sub_0023A4B0(); return; /* tail jmp 0x0023A4B0 */
-@@ -31586,7 +31545,7 @@ loc_002BC8FB: ;
+@@ -31763,7 +31722,7 @@ loc_002BC8FB: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0EC8;
@@ -225,7 +243,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31620,7 +31579,7 @@ loc_002BC910: ;
+@@ -31797,7 +31756,7 @@ loc_002BC910: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0EC8;
@@ -234,7 +252,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31651,7 +31610,7 @@ loc_002BC918: ;
+@@ -31828,7 +31787,7 @@ loc_002BC918: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0EC8;
@@ -243,7 +261,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31921,7 +31880,7 @@ loc_002BC9DB: ;
+@@ -32098,7 +32057,7 @@ loc_002BC9DB: ;
      g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
  
      eax = 0x3D0FD0;
@@ -252,7 +270,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31956,7 +31915,7 @@ loc_002BC9E9: ;
+@@ -32133,7 +32092,7 @@ loc_002BC9E9: ;
      g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
  
      eax = 0x3D0FD0;
@@ -261,7 +279,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -31982,7 +31941,7 @@ loc_002BC9F7: ;
+@@ -32159,7 +32118,7 @@ loc_002BC9F7: ;
      g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
  
      eax = 0x3D0FD0;
@@ -270,7 +288,7 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -32026,13 +31985,13 @@ loc_002BCA1B: ;
+@@ -32203,13 +32162,13 @@ loc_002BCA1B: ;
      g_seh_ebp = ebp; sub_0023B710(); return; /* tail jmp 0x0023B710 */
  
      eax = 0x3D0FFC;
@@ -286,37 +304,10 @@ index 493638d..41090ff 100644
  
      /* int3: debug-trap slide byte, stepped over */
      /* int3: debug-trap slide byte, stepped over */
-@@ -32065,7 +32024,7 @@ loc_002BCA30: ;
+@@ -32242,7 +32201,7 @@ loc_002BCA30: ;
      g_seh_ebp = ebp; sub_0023B740(); return; /* tail jmp 0x0023B740 */
  
      eax = 0x3D1020;
--    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
-+    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
- 
-     /* int3: debug-trap slide byte, stepped over */
-     /* int3: debug-trap slide byte, stepped over */
-@@ -32146,7 +32105,7 @@ loc_002BCA78: ;
-     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
- 
-     eax = 0x3D1078;
--    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
-+    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
- 
-     /* int3: debug-trap slide byte, stepped over */
-     /* int3: debug-trap slide byte, stepped over */
-@@ -32182,7 +32141,7 @@ loc_002BCA83: ;
-     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
- 
-     eax = 0x3D1078;
--    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
-+    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
- 
-     /* int3: debug-trap slide byte, stepped over */
-     /* int3: debug-trap slide byte, stepped over */
-@@ -32236,7 +32195,7 @@ loc_002BCAA8: ;
-     g_seh_ebp = ebp; sub_00263C90(); return; /* tail jmp 0x00263C90 */
- 
-     eax = 0x3D10A4;
 -    g_seh_ebp = ebp; sub_002A5319(); return; /* tail jmp 0x002A5319 */
 +    g_seh_ebp = ebp; CxxFrameHandler(); return; /* tail jmp 0x002A5319 */
  

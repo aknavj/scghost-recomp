@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0048.c b/src/game/recomp/gen/recomp_0048
 index 73df08c..1ce60c0 100644
 --- a/src/game/recomp/gen/recomp_0048.c
 +++ b/src/game/recomp/gen/recomp_0048.c
-@@ -18201,10 +18201,7 @@ loc_0024B8EA: ;
+@@ -18623,10 +18623,7 @@ loc_0024B8EA: ;
      _cf = 0; /* logical op clears CF */
      SET_LO8(eax, LO8(eax) & 0);
      _fa = (uint32_t)(LO8(eax)) & 0xFFu; _fas = (int32_t)(int8_t)(_fa); /* and result */

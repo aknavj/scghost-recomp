@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0037.c b/src/game/recomp/gen/recomp_0037
 index 4854025..90808d6 100644
 --- a/src/game/recomp/gen/recomp_0037.c
 +++ b/src/game/recomp/gen/recomp_0037.c
-@@ -3699,7 +3699,7 @@ loc_001BA600: ;
+@@ -3733,7 +3733,7 @@ loc_001BA600: ;
      ecx = MEM32(esp + 0xC0C);
      g_ebp = ebp; /* frame stays current across calls */
      g_seh_ebp = ebp;
@@ -11,7 +11,7 @@ index 4854025..90808d6 100644
  
  loc_001BA60C: ;
      POP32(esp, edi);
-@@ -4349,7 +4349,7 @@ loc_001BAA80: ;
+@@ -4383,7 +4383,7 @@ loc_001BAA80: ;
  loc_001BAAAE: ;
      eax = MEM32(esi + 0x24);
      PUSH32(esp, eax);
@@ -20,7 +20,7 @@ index 4854025..90808d6 100644
  
  loc_001BAAB7: ;
      _fb = (uint32_t)(4) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -5101,7 +5101,7 @@ loc_001BAEB0: ;
+@@ -5135,7 +5135,7 @@ loc_001BAEB0: ;
      PUSH32(esp, 0x80);
      PUSH32(esp, edi);
      PUSH32(esp, eax);
@@ -29,7 +29,7 @@ index 4854025..90808d6 100644
  
  loc_001BAEBF: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -5219,7 +5219,7 @@ loc_001BAF41: ;
+@@ -5253,7 +5253,7 @@ loc_001BAF41: ;
      PUSH32(esp, eax);
      PUSH32(esp, esi);
      MEM32(0x491CFC) = edx;
@@ -38,7 +38,7 @@ index 4854025..90808d6 100644
  
  loc_001BAF74: ;
      MEM8(esi + 0x1F) = 0;
-@@ -6715,7 +6715,7 @@ loc_001BB620: ;
+@@ -6749,7 +6749,7 @@ loc_001BB620: ;
      _fa = (uint32_t)(esp) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* sub result */
      fp_top() = fp_top() * MEMF(esi + 8); /* fmul dword ptr [esi + 8] */
      MEMD(esp) = fp_top(); fp_pop(); /* fstp */
@@ -47,7 +47,7 @@ index 4854025..90808d6 100644
  
  loc_001BB634: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -6955,7 +6955,7 @@ loc_001BB717: ;
+@@ -6989,7 +6989,7 @@ loc_001BB717: ;
      eax = eax + 4;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, eax);
@@ -56,7 +56,7 @@ index 4854025..90808d6 100644
  
  loc_001BB730: ;
      edx = MEM32(esi + 4);
-@@ -7078,7 +7078,7 @@ loc_001BB7C8: ;
+@@ -7112,7 +7112,7 @@ loc_001BB7C8: ;
      eax = 0; /* xor self */
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* xor result */
      ecx = MEM32(esp + 0x20);
@@ -65,7 +65,7 @@ index 4854025..90808d6 100644
  
  loc_001BB7D3: ;
      _fb = (uint32_t)(0x24) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7115,7 +7115,7 @@ loc_001BB800: ;
+@@ -7149,7 +7149,7 @@ loc_001BB800: ;
      edx = esp + 8;
      PUSH32(esp, edi);
      PUSH32(esp, edx);
@@ -74,7 +74,7 @@ index 4854025..90808d6 100644
  
  loc_001BB80B: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7147,7 +7147,7 @@ loc_001BB81F: ;
+@@ -7181,7 +7181,7 @@ loc_001BB81F: ;
      eax = eax + 0x495B18;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, eax);
@@ -83,7 +83,7 @@ index 4854025..90808d6 100644
  
  loc_001BB834: ;
      eax = MEM32(0x49DB98);
-@@ -7162,7 +7162,7 @@ loc_001BB834: ;
+@@ -7196,7 +7196,7 @@ loc_001BB834: ;
      eax = 1;
      POP32(esp, esi);
      ecx = MEM32(esp + 0x20);
@@ -92,7 +92,7 @@ index 4854025..90808d6 100644
  
  loc_001BB852: ;
      _fb = (uint32_t)(0x24) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7176,7 +7176,7 @@ loc_001BB856: ;
+@@ -7210,7 +7210,7 @@ loc_001BB856: ;
      eax = 0; /* xor self */
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* xor result */
      POP32(esp, esi);
@@ -101,7 +101,7 @@ index 4854025..90808d6 100644
  
  loc_001BB863: ;
      _fb = (uint32_t)(0x24) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7255,7 +7255,7 @@ loc_001BB8BC: ;
+@@ -7289,7 +7289,7 @@ loc_001BB8BC: ;
  loc_001BB8CF: ;
      PUSH32(esp, 0x80);
      PUSH32(esp, 0x491E90);
@@ -110,7 +110,7 @@ index 4854025..90808d6 100644
  
  loc_001BB8DE: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7268,7 +7268,7 @@ loc_001BB8E3: ;
+@@ -7302,7 +7302,7 @@ loc_001BB8E3: ;
      PUSH32(esp, 0x3A98BC);
      PUSH32(esp, 0x80);
      PUSH32(esp, 0x491E90);
@@ -119,7 +119,7 @@ index 4854025..90808d6 100644
  
  loc_001BB8F8: ;
      _fb = (uint32_t)(0x14) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7348,7 +7348,7 @@ loc_001BB95D: ;
+@@ -7382,7 +7382,7 @@ loc_001BB95D: ;
      POP32(esp, esi);
      POP32(esp, ebp);
      POP32(esp, ebx);
@@ -128,7 +128,7 @@ index 4854025..90808d6 100644
  
  loc_001BB972: ;
      _fb = (uint32_t)(0x114) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7532,7 +7532,7 @@ loc_001BBA49: ;
+@@ -7566,7 +7566,7 @@ loc_001BBA49: ;
      PUSH32(esp, 0x3A98BC);
      PUSH32(esp, 0x80);
      PUSH32(esp, 0x491E90);
@@ -137,7 +137,7 @@ index 4854025..90808d6 100644
  
  loc_001BBA5F: ;
      _fb = (uint32_t)(0x14) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7545,7 +7545,7 @@ loc_001BBA64: ;
+@@ -7579,7 +7579,7 @@ loc_001BBA64: ;
      PUSH32(esp, 0x362C54);
      PUSH32(esp, 0x80);
      PUSH32(esp, 0x491E90);
@@ -146,7 +146,7 @@ index 4854025..90808d6 100644
  
  loc_001BBA79: ;
      _fb = (uint32_t)(0x10) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7575,7 +7575,7 @@ loc_001BBA92: ;
+@@ -7609,7 +7609,7 @@ loc_001BBA92: ;
      PUSH32(esp, edx);
      MEM8(esi + 0x491F94) = 1;
      MEM32(esi + 0x491F98) = eax;
@@ -155,7 +155,7 @@ index 4854025..90808d6 100644
  
  loc_001BBABF: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7657,7 +7657,7 @@ loc_001BBB10: ;
+@@ -7691,7 +7691,7 @@ loc_001BBB10: ;
  loc_001BBB2B: ;
      eax = MEM32(esi + 0x88);
      PUSH32(esp, eax);
@@ -164,7 +164,7 @@ index 4854025..90808d6 100644
  
  loc_001BBB37: ;
      _fb = (uint32_t)(4) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -7793,7 +7793,7 @@ loc_001BBBD0: ;
+@@ -7827,7 +7827,7 @@ loc_001BBBD0: ;
  loc_001BBBEA: ;
      eax = MEM32(eax + 0x88);
      MEM32(esp + 0xC) = eax;
@@ -173,7 +173,7 @@ index 4854025..90808d6 100644
  
  loc_001BBBF9: ;
      eax = MEM32(esp + 0xC);
-@@ -7862,7 +7862,7 @@ loc_001BBC30: ;
+@@ -7896,7 +7896,7 @@ loc_001BBC30: ;
  loc_001BBC4A: ;
      eax = MEM32(eax + 0x88);
      MEM32(esp + 4) = eax;
@@ -182,7 +182,7 @@ index 4854025..90808d6 100644
  
  loc_001BBC59: ;
      esp += 4; return; /* ret */
-@@ -7897,7 +7897,7 @@ loc_001BBC60: ;
+@@ -7931,7 +7931,7 @@ loc_001BBC60: ;
  loc_001BBC7A: ;
      eax = MEM32(eax + 0x88);
      MEM32(esp + 4) = eax;
@@ -191,7 +191,7 @@ index 4854025..90808d6 100644
  
  loc_001BBC89: ;
      esp += 4; return; /* ret */
-@@ -7928,7 +7928,7 @@ loc_001BBC90: ;
+@@ -7962,7 +7962,7 @@ loc_001BBC90: ;
      PUSH32(esp, 0x800);
      PUSH32(esp, 0x495318);
      esi = esi + 0x491E84;
@@ -200,7 +200,7 @@ index 4854025..90808d6 100644
  
  loc_001BBCBA: ;
      SET_LO8(ecx, MEM8(esi + 0x84));
-@@ -8039,7 +8039,7 @@ loc_001BBD52: ;
+@@ -8073,7 +8073,7 @@ loc_001BBD52: ;
  
  loc_001BBD53: ;
      PUSH32(esp, esi);
@@ -209,7 +209,7 @@ index 4854025..90808d6 100644
  
  loc_001BBD59: ;
      _fb = (uint32_t)(4) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8049,7 +8049,7 @@ loc_001BBD59: ;
+@@ -8083,7 +8083,7 @@ loc_001BBD59: ;
  loc_001BBD5C: ;
      ecx = MEM32(esp + 0x204);
      POP32(esp, esi);
@@ -218,7 +218,7 @@ index 4854025..90808d6 100644
  
  loc_001BBD69: ;
      _fb = (uint32_t)(0x204) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8351,7 +8351,7 @@ loc_001BBFB0: ;
+@@ -8385,7 +8385,7 @@ loc_001BBFB0: ;
      PUSH32(esp, 0x80);
      PUSH32(esp, eax);
      PUSH32(esp, esi);
@@ -227,7 +227,7 @@ index 4854025..90808d6 100644
  
  loc_001BBFC9: ;
      ecx = MEM32(esp + 0xC);
-@@ -8359,7 +8359,7 @@ loc_001BBFC9: ;
+@@ -8393,7 +8393,7 @@ loc_001BBFC9: ;
      _fb = (uint32_t)(0x10) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
      esp = esp + 0x10;
      _fa = (uint32_t)(esp) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
@@ -236,7 +236,7 @@ index 4854025..90808d6 100644
  
  }
  
-@@ -8391,7 +8391,7 @@ loc_001BBFE0: ;
+@@ -8425,7 +8425,7 @@ loc_001BBFE0: ;
  loc_001BBFFA: ;
      eax = MEM32(eax + 0x88);
      MEM32(esp + 4) = eax;
@@ -245,7 +245,7 @@ index 4854025..90808d6 100644
  
  loc_001BC009: ;
      eax = MEM32(esp + 4);
-@@ -8414,7 +8414,7 @@ void sub_001BC000(void)
+@@ -8448,7 +8448,7 @@ void sub_001BC000(void)
  
  loc_001BC000: ;
      MEM32(esp + 4) = eax;
@@ -254,7 +254,7 @@ index 4854025..90808d6 100644
  
      eax = MEM32(esp + 4);
      esp += 4; return; /* ret */
-@@ -8641,7 +8641,7 @@ loc_001BC125: ;
+@@ -8675,7 +8675,7 @@ loc_001BC125: ;
      _fa = (uint32_t)(eax) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* xor result */
      POP32(esp, edi);
      ecx = MEM32(esp + 0x80);
@@ -263,7 +263,7 @@ index 4854025..90808d6 100644
  
  loc_001BC134: ;
      _fb = (uint32_t)(0x84) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8692,7 +8692,7 @@ loc_001BC173: ;
+@@ -8726,7 +8726,7 @@ loc_001BC173: ;
      ecx = esp + 0x1C;
      PUSH32(esp, 0x3A98C4);
      PUSH32(esp, ecx);
@@ -272,7 +272,7 @@ index 4854025..90808d6 100644
  
  loc_001BC18F: ;
      edx = esp + 0x24;
-@@ -8741,7 +8741,7 @@ loc_001BC1C0: ;
+@@ -8775,7 +8775,7 @@ loc_001BC1C0: ;
      POP32(esp, ebx);
      MEM32(0x3D9B5C) = 1;
      POP32(esp, edi);
@@ -281,7 +281,7 @@ index 4854025..90808d6 100644
  
  loc_001BC1DA: ;
      _fb = (uint32_t)(0x84) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8794,7 +8794,7 @@ loc_001BC210: ;
+@@ -8828,7 +8828,7 @@ loc_001BC210: ;
      eax = edx + 0x491E88;
      PUSH32(esp, eax);
      PUSH32(esp, ecx);
@@ -290,7 +290,7 @@ index 4854025..90808d6 100644
  
  loc_001BC22E: ;
      PUSH32(esp, esi);
-@@ -8828,7 +8828,7 @@ loc_001BC240: ;
+@@ -8862,7 +8862,7 @@ loc_001BC240: ;
      esi = MEM32(esp + 8);
      PUSH32(esp, 0x5C);
      PUSH32(esp, esi);
@@ -299,7 +299,7 @@ index 4854025..90808d6 100644
  
  loc_001BC24D: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8888,7 +8888,7 @@ loc_001BC270: ;
+@@ -8922,7 +8922,7 @@ loc_001BC270: ;
  loc_001BC27B: ;
      PUSH32(esp, 0x2E);
      PUSH32(esp, eax);
@@ -308,7 +308,7 @@ index 4854025..90808d6 100644
  
  loc_001BC283: ;
      esi = eax;
-@@ -8907,7 +8907,7 @@ loc_001BC28E: ;
+@@ -8941,7 +8941,7 @@ loc_001BC28E: ;
      ecx = esi + 1;
      PUSH32(esp, 0x2E);
      PUSH32(esp, ecx);
@@ -317,7 +317,7 @@ index 4854025..90808d6 100644
  
  loc_001BC299: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -8924,7 +8924,7 @@ loc_001BC2A0: ;
+@@ -8958,7 +8958,7 @@ loc_001BC2A0: ;
      _fas = (int32_t)(int32_t)(_fa); _fb = (_fa == 0x80000000u); /* inc result/SF/OF; CF unchanged */
      PUSH32(esp, 0x2E);
      PUSH32(esp, eax);
@@ -326,7 +326,7 @@ index 4854025..90808d6 100644
  
  loc_001BC2AB: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9209,7 +9209,7 @@ loc_001BC3B0: ;
+@@ -9243,7 +9243,7 @@ loc_001BC3B0: ;
      PUSH32(esp, 0x3A);
      PUSH32(esp, edi);
      esi = edi;
@@ -335,7 +335,7 @@ index 4854025..90808d6 100644
  
  loc_001BC3C0: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9225,7 +9225,7 @@ loc_001BC3C7: ;
+@@ -9259,7 +9259,7 @@ loc_001BC3C7: ;
  loc_001BC3CA: ;
      PUSH32(esp, 0x5C);
      PUSH32(esp, esi);
@@ -344,7 +344,7 @@ index 4854025..90808d6 100644
  
  loc_001BC3D2: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9241,7 +9241,7 @@ loc_001BC3D9: ;
+@@ -9275,7 +9275,7 @@ loc_001BC3D9: ;
  loc_001BC3DC: ;
      PUSH32(esp, 0x2E);
      PUSH32(esp, esi);
@@ -353,7 +353,7 @@ index 4854025..90808d6 100644
  
  loc_001BC3E4: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9298,7 +9298,7 @@ loc_001BC410: ;
+@@ -9332,7 +9332,7 @@ loc_001BC410: ;
      PUSH32(esp, 0x3A);
      PUSH32(esp, edi);
      esi = edi;
@@ -362,7 +362,7 @@ index 4854025..90808d6 100644
  
  loc_001BC420: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9314,7 +9314,7 @@ loc_001BC427: ;
+@@ -9348,7 +9348,7 @@ loc_001BC427: ;
  loc_001BC42A: ;
      PUSH32(esp, 0x5C);
      PUSH32(esp, esi);
@@ -371,7 +371,7 @@ index 4854025..90808d6 100644
  
  loc_001BC432: ;
      _fb = (uint32_t)(8) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9379,7 +9379,7 @@ loc_001BC461: ;
+@@ -9413,7 +9413,7 @@ loc_001BC461: ;
      _fa = (uint32_t)(esp) & 0xFFFFFFFFu; _fas = (int32_t)(int32_t)(_fa); /* add result */
      PUSH32(esp, eax);
      PUSH32(esp, edi);
@@ -380,7 +380,7 @@ index 4854025..90808d6 100644
  
  loc_001BC46F: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9417,7 +9417,7 @@ loc_001BC48C: ;
+@@ -9451,7 +9451,7 @@ loc_001BC48C: ;
      PUSH32(esp, edi);
      PUSH32(esp, eax);
      PUSH32(esp, esi);
@@ -389,7 +389,7 @@ index 4854025..90808d6 100644
  
  loc_001BC49C: ;
      PUSH32(esp, esi);
-@@ -9501,7 +9501,7 @@ loc_001BC4E9: ;
+@@ -9535,7 +9535,7 @@ loc_001BC4E9: ;
      PUSH32(esp, ecx);
      PUSH32(esp, eax);
      PUSH32(esp, esi);
@@ -398,7 +398,7 @@ index 4854025..90808d6 100644
  
  loc_001BC4F8: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -9534,7 +9534,7 @@ loc_001BC500: ;
+@@ -9568,7 +9568,7 @@ loc_001BC500: ;
      PUSH32(esp, esi);
      PUSH32(esp, eax);
      PUSH32(esp, edi);
@@ -407,7 +407,7 @@ index 4854025..90808d6 100644
  
  loc_001BC516: ;
      ecx = MEM32(esp + 0x24);
-@@ -9990,7 +9990,7 @@ loc_001BC73C: ;
+@@ -10024,7 +10024,7 @@ loc_001BC73C: ;
      POP32(esp, edi);
      POP32(esp, esi);
      ecx = MEM32(esp + 0x10C);
@@ -416,7 +416,7 @@ index 4854025..90808d6 100644
  
  loc_001BC74A: ;
      _fb = (uint32_t)(0x110) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -10041,7 +10041,7 @@ loc_001BC77C: ;
+@@ -10075,7 +10075,7 @@ loc_001BC77C: ;
      eax = edi;
      POP32(esp, edi);
      POP32(esp, esi);
@@ -425,7 +425,7 @@ index 4854025..90808d6 100644
  
  loc_001BC78F: ;
      _fb = (uint32_t)(0x110) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -10084,7 +10084,7 @@ loc_001BC7C3: ;
+@@ -10118,7 +10118,7 @@ loc_001BC7C3: ;
      _fas = (int32_t)(int32_t)(_fa); _fbs = (int32_t)(int32_t)(_fb); /* cmp eax, 0xFFFFFFFFu (32-bit) */
      SET_LO8(edx, (CMP_NE(_fa, _fb)) ? 1 : 0); /* setne */
      eax = edx;
@@ -434,7 +434,7 @@ index 4854025..90808d6 100644
  
  loc_001BC7D9: ;
      _fb = (uint32_t)(0x144) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -10398,7 +10398,7 @@ loc_001BC93E: ;
+@@ -10432,7 +10432,7 @@ loc_001BC93E: ;
      MEM32(eax + 4) = ecx;
      POP32(esp, esi);
      ecx = MEM32(esp + 0x244);
@@ -443,7 +443,7 @@ index 4854025..90808d6 100644
  
  loc_001BC959: ;
      _fb = (uint32_t)(0x248) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -10454,7 +10454,7 @@ loc_001BC9BE: ;
+@@ -10488,7 +10488,7 @@ loc_001BC9BE: ;
      ecx = MEM32(esp + 0x248);
      MEM32(eax + 4) = edx;
      POP32(esp, esi);
@@ -452,7 +452,7 @@ index 4854025..90808d6 100644
  
  loc_001BC9E3: ;
      _fb = (uint32_t)(0x248) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -10966,7 +10966,7 @@ loc_001BCC78: ;
+@@ -11000,7 +11000,7 @@ loc_001BCC78: ;
      POP32(esp, edi);
      POP32(esp, esi);
      ecx = MEM32(esp + 0x344);
@@ -461,7 +461,7 @@ index 4854025..90808d6 100644
  
  loc_001BCC86: ;
      _fb = (uint32_t)(0x348) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11144,7 +11144,7 @@ loc_001BCD7D: ;
+@@ -11178,7 +11178,7 @@ loc_001BCD7D: ;
      MEM32(esi + 4) = 0;
      eax = 1;
      POP32(esp, esi);
@@ -470,7 +470,7 @@ index 4854025..90808d6 100644
  
  loc_001BCD97: ;
      _fb = (uint32_t)(0x348) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11555,7 +11555,7 @@ loc_001BCF7C: ;
+@@ -11589,7 +11589,7 @@ loc_001BCF7C: ;
      MEM16(eax) = 0;
      POP32(esp, edi);
      ecx = MEM32(esp + 0x88);
@@ -479,7 +479,7 @@ index 4854025..90808d6 100644
  
  loc_001BCF95: ;
      _fb = (uint32_t)(0x8C) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11676,7 +11676,7 @@ loc_001BD04E: ;
+@@ -11710,7 +11710,7 @@ loc_001BD04E: ;
      POP32(esp, esi);
      POP32(esp, edi);
      ecx = MEM32(esp + 0x88);
@@ -488,7 +488,7 @@ index 4854025..90808d6 100644
  
  loc_001BD05C: ;
      _fb = (uint32_t)(0x8C) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11693,7 +11693,7 @@ loc_001BD065: ;
+@@ -11727,7 +11727,7 @@ loc_001BD065: ;
  loc_001BD077: ;
      ecx = MEM32(esp + 0x8C);
      POP32(esp, edi);
@@ -497,7 +497,7 @@ index 4854025..90808d6 100644
  
  loc_001BD084: ;
      _fb = (uint32_t)(0x8C) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11881,7 +11881,7 @@ loc_001BD188: ;
+@@ -11915,7 +11915,7 @@ loc_001BD188: ;
      PUSH32(esp, esi);
      PUSH32(esp, eax);
      PUSH32(esp, ecx);
@@ -506,7 +506,7 @@ index 4854025..90808d6 100644
  
  loc_001BD19D: ;
      edx = MEM32(esp + 0x1C);
-@@ -11891,7 +11891,7 @@ loc_001BD19D: ;
+@@ -11925,7 +11925,7 @@ loc_001BD19D: ;
      eax = MEM32(esp + 0x20);
      PUSH32(esp, edx);
      PUSH32(esp, eax);
@@ -515,7 +515,7 @@ index 4854025..90808d6 100644
  
  loc_001BD1B0: ;
      ebx = eax;
-@@ -11916,7 +11916,7 @@ loc_001BD1D1: ;
+@@ -11950,7 +11950,7 @@ loc_001BD1D1: ;
      PUSH32(esp, 0xA);
      PUSH32(esp, eax);
      PUSH32(esp, edi);
@@ -524,7 +524,7 @@ index 4854025..90808d6 100644
  
  loc_001BD1DA: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -11941,7 +11941,7 @@ loc_001BD1F8: ;
+@@ -11975,7 +11975,7 @@ loc_001BD1F8: ;
      PUSH32(esp, 0xA);
      PUSH32(esp, eax);
      PUSH32(esp, esi);
@@ -533,7 +533,7 @@ index 4854025..90808d6 100644
  
  loc_001BD201: ;
      _fb = (uint32_t)(0xC) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -12197,7 +12197,7 @@ loc_001BD330: ;
+@@ -12231,7 +12231,7 @@ loc_001BD330: ;
      esi = ecx;
      PUSH32(esp, 0xA4);
      PUSH32(esp, esi);
@@ -542,7 +542,7 @@ index 4854025..90808d6 100644
  
  loc_001BD34A: ;
      eax = esi;
-@@ -12220,7 +12220,7 @@ loc_001BD350: ;
+@@ -12254,7 +12254,7 @@ loc_001BD350: ;
      PUSH32(esp, 0xB);
      PUSH32(esp, 0xA4);
      PUSH32(esp, ecx);
@@ -551,7 +551,7 @@ index 4854025..90808d6 100644
  
  loc_001BD362: ;
      esp += 4; return; /* ret */
-@@ -12539,7 +12539,7 @@ loc_001BD4B0: ;
+@@ -12573,7 +12573,7 @@ loc_001BD4B0: ;
      PUSH32(esp, 0x3627AC);
      PUSH32(esp, eax);
      esi = ecx;
@@ -560,7 +560,7 @@ index 4854025..90808d6 100644
  
  loc_001BD4D8: ;
      ecx = MEM32(esp + 0x6C);
-@@ -12558,7 +12558,7 @@ loc_001BD4D8: ;
+@@ -12592,7 +12592,7 @@ loc_001BD4D8: ;
  loc_001BD4EC: ;
      ecx = MEM32(esp + 0x54);
      POP32(esp, esi);
@@ -569,7 +569,7 @@ index 4854025..90808d6 100644
  
  loc_001BD4F6: ;
      _fb = (uint32_t)(0x54) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -12599,7 +12599,7 @@ loc_001BD500: ;
+@@ -12633,7 +12633,7 @@ loc_001BD500: ;
      ecx = esp + 8;
      PUSH32(esp, 0x3672C4);
      PUSH32(esp, ecx);
@@ -578,7 +578,7 @@ index 4854025..90808d6 100644
  
  loc_001BD523: ;
      ecx = MEM32(esp + 0x68);
-@@ -12618,7 +12618,7 @@ loc_001BD523: ;
+@@ -12652,7 +12652,7 @@ loc_001BD523: ;
  loc_001BD537: ;
      ecx = MEM32(esp + 0x54);
      POP32(esp, esi);
@@ -587,7 +587,7 @@ index 4854025..90808d6 100644
  
  loc_001BD541: ;
      _fb = (uint32_t)(0x54) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -12654,7 +12654,7 @@ loc_001BD550: ;
+@@ -12688,7 +12688,7 @@ loc_001BD550: ;
      ecx = esp + 8;
      PUSH32(esp, 0x3627E0);
      PUSH32(esp, ecx);
@@ -596,7 +596,7 @@ index 4854025..90808d6 100644
  
  loc_001BD573: ;
      ecx = MEM32(esp + 0x68);
-@@ -12673,7 +12673,7 @@ loc_001BD573: ;
+@@ -12707,7 +12707,7 @@ loc_001BD573: ;
  loc_001BD587: ;
      ecx = MEM32(esp + 0x54);
      POP32(esp, esi);
@@ -605,7 +605,7 @@ index 4854025..90808d6 100644
  
  loc_001BD591: ;
      _fb = (uint32_t)(0x54) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -12722,7 +12722,7 @@ loc_001BD5C3: ;
+@@ -12756,7 +12756,7 @@ loc_001BD5C3: ;
      PUSH32(esp, ecx);
  
  loc_001BD5CD: ;
@@ -614,7 +614,7 @@ index 4854025..90808d6 100644
  
  loc_001BD5D2: ;
      ecx = MEM32(esp + 0x64);
-@@ -12741,7 +12741,7 @@ loc_001BD5D2: ;
+@@ -12775,7 +12775,7 @@ loc_001BD5D2: ;
  loc_001BD5E6: ;
      ecx = MEM32(esp + 0x54);
      POP32(esp, esi);
@@ -623,7 +623,7 @@ index 4854025..90808d6 100644
  
  loc_001BD5F0: ;
      _fb = (uint32_t)(0x54) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -13304,7 +13304,7 @@ loc_001BD860: ;
+@@ -13338,7 +13338,7 @@ loc_001BD860: ;
      MEMD(esp) = fp_top(); fp_pop(); /* fstp */
      PUSH32(esp, 0x3627D4);
      PUSH32(esp, eax);
@@ -632,7 +632,7 @@ index 4854025..90808d6 100644
  
  loc_001BD898: ;
      ecx = MEM32(esp + 0x7C);
-@@ -13323,7 +13323,7 @@ loc_001BD898: ;
+@@ -13357,7 +13357,7 @@ loc_001BD898: ;
  loc_001BD8AC: ;
      ecx = MEM32(esp + 0x54);
      POP32(esp, esi);
@@ -641,7 +641,7 @@ index 4854025..90808d6 100644
  
  loc_001BD8B6: ;
      _fb = (uint32_t)(0x54) & 0xFFFFFFFFu; _fbs = (int32_t)(int32_t)(_fb); /* add source, before the write */
-@@ -14163,7 +14163,7 @@ loc_001BDC90: ;
+@@ -14197,7 +14197,7 @@ loc_001BDC90: ;
      esi = ecx;
      PUSH32(esp, 0x10);
      PUSH32(esp, esi);
@@ -650,7 +650,7 @@ index 4854025..90808d6 100644
  
  loc_001BDCA7: ;
      eax = esi;
-@@ -14186,7 +14186,7 @@ loc_001BDCB0: ;
+@@ -14220,7 +14220,7 @@ loc_001BDCB0: ;
      PUSH32(esp, 8);
      PUSH32(esp, 0x10);
      PUSH32(esp, ecx);

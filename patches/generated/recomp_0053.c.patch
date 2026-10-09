@@ -2,7 +2,7 @@ diff --git a/src/game/recomp/gen/recomp_0053.c b/src/game/recomp/gen/recomp_0053
 index b793651..13bf0ed 100644
 --- a/src/game/recomp/gen/recomp_0053.c
 +++ b/src/game/recomp/gen/recomp_0053.c
-@@ -21371,7 +21371,7 @@ loc_0029E662: ;
+@@ -21556,7 +21556,7 @@ loc_0029E662: ;
      edx = esi + 0xC;
      PUSH32(esp, edi);
      PUSH32(esp, edx);
