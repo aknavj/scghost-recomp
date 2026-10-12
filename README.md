@@ -1,7 +1,7 @@
 # StarCraft: Ghost (Release) - Xbox Recomp
 
 Static recompilation of the Xbox StarCraft: Ghost executable using
-[XboxRecomp](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/README.md).
+[XboxRecomp](https://github.com/aknavj/xboxrecomp/blob/modded-software-aknavj-rebased/README.md).
 
 The project translates the original x86 game code into C and links it with
 the XboxRecomp runtime to produce a native Windows executable. It is a
@@ -16,11 +16,17 @@ or playable performance.
 | Video playback | Partial | Videos play; occasional intro tearing remains. |
 | Menu scene | Verified | Character, room and logo effects display correctly. |
 | Controller input | Verified | Physical controller works; full menu navigation verified. |
-| Loading screen | Partial | Mission briefing reached; background texture unverified. |
-| Gameplay | Partial | Gameplay runs, but renderer failures still cause exits. |
+| Loading screen | Partial | Briefings and mission loads exercised; loading-background fidelity not fully verified. |
+| Gameplay | Partial | Gameplay and repeated mission changes work in the tested sequence; full campaign compatibility remains unverified. |
+| Mission transitions | Verified workload | Three level changes, a mission reload and return to the menu tested; the longer repeat run also passed. |
 | Audio | Partial | Intro and gameplay sound work; occasional crackles and incomplete DSP effects remain. |
 | Rendering | Partial | Hardware rendering works; texture and shader support remains incomplete. |
-| Performance | Needs work | Debug menu: about 10-15 FPS; sustained optimized performance unverified. |
+| Performance | Partial | Repeated Release mission changes tested without progressive FPS loss; frame rate remains scene-dependent. |
+
+The latest transition fixes address contiguous-memory exhaustion, concurrent
+XACT teardown and texture-cache churn. Verification covers the exercised
+missions and reload sequence, not every mission, save/load path or rendering
+effect. Earlier Debug-menu measurements are not a Release performance baseline.
 
 ## Requirements
 
@@ -30,25 +36,27 @@ or playable performance.
 - Git for Windows, including Git Bash.
 - Python 3.10 or newer with the Windows `py` launcher.
 - The Python dependencies required by XboxRecomp, including `capstone`.
-- [aknavj/xboxrecomp](https://github.com/aknavj/xboxrecomp/tree/impl-scghost)
-  checked out on the **`impl-scghost` branch**.
+- [aknavj/xboxrecomp](https://github.com/aknavj/xboxrecomp/tree/modded-software-aknavj-rebased)
+  checked out on the **`modded-software-aknavj-rebased` branch**.
 - Your own legally obtained game executable and extracted data files.
 
-**The `impl-scghost` toolkit branch is required for correct behavior.** It
-contains the runtime and recompilation changes needed by this port; the default
-branch is not a supported substitute.
+**The `modded-software-aknavj-rebased` toolkit branch is required for correct behavior.** It
+is the supported integration branch; the default branch is not a supported
+substitute. The local toolkit checkout must also include the current
+thread-local IRQL, memory-reclamation and texture-cache index fixes described
+below. A branch name alone does not establish that those fixes are present.
 
 To clone the required branch beside this project, run from the parent directory:
 
 ```powershell
-git clone --branch impl-scghost https://github.com/aknavj/xboxrecomp.git xboxrecomp
+git clone --branch modded-software-aknavj-rebased https://github.com/aknavj/xboxrecomp.git xboxrecomp
 ```
 
 For an existing clone of that fork, preserve any local changes before switching:
 
 ```powershell
 git -C ..\xboxrecomp fetch origin
-git -C ..\xboxrecomp switch impl-scghost
+git -C ..\xboxrecomp switch modded-software-aknavj-rebased
 ```
 
 Install Capstone for the Python interpreter used by the regeneration script:
@@ -193,7 +201,120 @@ cmake --build build-xr --config Release --parallel 2
 CMake builds the XboxRecomp libraries and the `Ghost` executable. Generated
 source files are large, so compilation can take considerable time.
 
+## Run
+
+Launch the Release executable from PowerShell:
+
+```powershell
+.\build-xr\Release\Ghost.exe
+```
+
+Use a physical controller for the verified input path. Keyboard input is
+disabled by default; see the input documentation below for configuration.
+Runtime asset paths are configured at build time, so changing the working
+directory does not change the configured `game_files` location.
+
+The executable writes `Ghost-run.log` and `Ghost-errors.log` beside itself
+(`build-xr\Release` for the command above). Preserve both before starting
+another diagnostic run.
+
+### Runtime Defaults
+
+These defaults are applied before runtime initialization by
+[main.c](src/main.c):
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| `RECOMP_HEAP_RECLAIM` | `1` | Reuse freed heap and contiguous allocations across mission changes. |
+| `RECOMP_TITLE_KEVENTS` | `1` | Support events initialized directly in guest memory, including D3D fence events. |
+| `RECOMP_APU_DIAG` | `0` | Disable verbose audio diagnostics during normal play. |
+| `RECOMP_FB_SCALE` | `1` | Use the native framebuffer scale. |
+| `RECOMP_FB_D3D11` | `0` | Keep the default framebuffer presentation path. |
+| `RECOMP_KEYBOARD` | `0` | Keep keyboard input disabled unless explicitly enabled. |
+| `RECOMP_WATCHDOG_SECS` | Forced to `0` | Disable timed process termination, including inherited timeout settings. |
+
+Explicit environment settings are preserved except for the timed watchdog,
+which Ghost always disables. Native GPU fences and vblank delivery remain
+enabled; disabling the watchdog does not bypass guest synchronization.
+
+For non-terminating stall diagnostics:
+
+```powershell
+$env:RECOMP_STALL_DUMP = '1'
+.\build-xr\Release\Ghost.exe
+```
+
+If the game stalls, leave it open long enough to capture the diagnostic output
+and preserve the logs. This option does not terminate the process or repair
+the stalled guest state.
+
+## Validation
+
+The Release build and targeted runtime regressions passed:
+
+- Startup defaults, explicit overrides, guest-event support and disabled timed
+  watchdog behavior.
+- Contiguous reclamation through 900 MiB of allocation churn using an
+  approximately 18 MiB arena, with a pinned GPU-fence sentinel preserved.
+- Concurrent guest-thread IRQL isolation, aggregate interrupt gating, nested
+  ISR restoration and thread-exit cleanup.
+- Texture reuse after 64 full-cache evictions, including readback of modified
+  guest pixels using a headless D3D11 WARP device.
+- Audio DSP-memory and recursive audio-guard checks.
+
+From the `scghost` directory, after building Release:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run_render_dispatch_native.ps1 -CheckRenderingDefaults
+```
+
+The toolkit's focused IRQL and texture-cache regressions can be run separately:
+
+```powershell
+cmake -S ..\xboxrecomp\tests\kernel_irql_abi -B ..\xboxrecomp\build-xr\kernel-irql-abi -A x64
+cmake --build ..\xboxrecomp\build-xr\kernel-irql-abi --config Release --target kernel_irql_abi_test
+ctest --test-dir ..\xboxrecomp\build-xr\kernel-irql-abi -C Release --output-on-failure
+
+cmake -S ..\xboxrecomp\tests\nv2a_texture_cache -B ..\xboxrecomp\build-xr\nv2a-texture-cache -A x64
+cmake --build ..\xboxrecomp\build-xr\nv2a-texture-cache --config Release --target nv2a_texture_cache_test
+ctest --test-dir ..\xboxrecomp\build-xr\nv2a-texture-cache -C Release --output-on-failure
+```
+
+Gameplay verification exercised repeated level changes, mission reload and
+return to the menu. The repeat run no longer stalled or progressively lost
+FPS, and renderer counters confirmed texture reuse at the 1024-entry limit.
+These results do not establish a universal FPS target or complete gameplay
+compatibility. Compare the same scene, build configuration and settings when
+checking for performance regressions; a responsive window or rendered loading
+screen alone does not prove that a transition completed.
+
 ## Troubleshooting
+
+### Mission-Exit Stalls
+
+Without reclamation, reloads can exhaust the 64 MB contiguous arena;
+subsequent texture initialization can corrupt the GPU-completion word and
+stall mission exit. Keep Ghost's `RECOMP_HEAP_RECLAIM=1` default enabled.
+An explicit `RECOMP_HEAP_RECLAIM=0` disables reclamation for diagnosis, not
+normal play.
+
+The toolkit must also retain thread-local guest IRQL with aggregate interrupt
+gating. Sharing saved IRQL across concurrently executing guest threads lets
+XACT skip its critical section and corrupt pending-audio lists during teardown.
+Reclamation alone does not fix that separate stall; both runtime fixes are
+required.
+
+### Progressive Slowdown After Mission Changes
+
+Retain the toolkit's texture-cache index invalidation after insertion. Once
+the cache reaches 1024 entries, eviction plus insertion keeps its size
+unchanged; a stale source index then causes repeated native texture creation
+and progressive slowdown. The WARP regression covers this boundary and
+changed-pixel readback without changing cache budgets or bypassing validation.
+Increasing the cache limit or flushing all textures is not a substitute for
+correct lookup-index invalidation.
+
+### Build and Asset Errors
 
 | Error | Check |
 | --- | --- |
@@ -220,17 +341,16 @@ This project retains its generated-patch workflow, native GPU fences and
 vblank delivery, plus the newer rendering, audio-guard and window fixes.
 Do not replace its startup code or runtime wholesale with an older checkout:
 the older fence-mirroring path is not an equivalent synchronization mode.
-Compare the same configuration and scene when measuring performance:
 
-```powershell
-cmake -S . -B build-xr
-cmake --build build-xr --config Release --target Ghost --parallel 2
-.\build-xr\Release\Ghost.exe
-```
+## Acknowledgments
+
+Special thanks to honored contributor
+[@vladislavdonchev](https://github.com/vladislavdonchev) for pushing
+StarCraft: Ghost compatibility forward.
 
 ## Runtime Documentation
 
-- [XboxRecomp getting started](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/docs/GETTING_STARTED.md).
-- [Native NV2A to D3D11 translation](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/docs/runtime/nv2a-d3d11-backend.md).
-- [Input integration](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/src/input/README.md).
-- [Audio implementation](https://github.com/aknavj/xboxrecomp/blob/impl-scghost/src/apu/README.md).
+- [XboxRecomp getting started](https://github.com/aknavj/xboxrecomp/blob/modded-software-aknavj-rebased/docs/GETTING_STARTED.md).
+- [Native NV2A to D3D11 translation](https://github.com/aknavj/xboxrecomp/blob/modded-software-aknavj-rebased/docs/runtime/nv2a-d3d11-backend.md).
+- [Input integration](https://github.com/aknavj/xboxrecomp/blob/modded-software-aknavj-rebased/src/input/README.md).
+- [Audio implementation](https://github.com/aknavj/xboxrecomp/blob/modded-software-aknavj-rebased/src/apu/README.md).
