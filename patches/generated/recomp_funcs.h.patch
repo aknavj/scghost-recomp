@@ -1,8 +1,15 @@
 diff --git a/src/game/recomp/gen/recomp_funcs.h b/src/game/recomp/gen/recomp_funcs.h
-index 2ca03b8..2c4cfe6 100644
 --- a/src/game/recomp/gen/recomp_funcs.h
 +++ b/src/game/recomp/gen/recomp_funcs.h
-@@ -11809,17 +11809,17 @@ void sub_0023C670(void);
+@@ -8008,6 +8008,7 @@
+ void sub_0016DFC0(void);
+ void sub_0016E060(void);
+ void sub_0016E0B0(void);
++void sub_0016E620(void);
+ void sub_0016E630(void);
+ void sub_0016E6B0(void);
+ void sub_0016E810(void);
+@@ -11744,17 +11745,17 @@
  void sub_0023C760(void);
  void sub_0023C850(void);
  void sub_0023C880(void);
@@ -24,7 +31,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_0023CA50(void);
  void sub_0023CA70(void);
  void sub_0023CAA0(void);
-@@ -13557,45 +13557,45 @@ void sub_002A3110(void);
+@@ -13485,45 +13486,45 @@
  void sub_002A3111(void);
  void sub_002A3149(void);
  void sub_002A3160(void);
@@ -92,7 +99,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002A3FA1(void);
  void sub_002A3FAA(void);
  void sub_002A3FB3(void);
-@@ -13606,63 +13606,63 @@ void sub_002A4083(void);
+@@ -13534,63 +13535,63 @@
  void sub_002A408F(void);
  void sub_002A40BA(void);
  void sub_002A410E(void);
@@ -189,7 +196,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002A566B(void);
  void sub_002A569C(void);
  void sub_002A5794(void);
-@@ -13670,54 +13670,54 @@ void sub_002A57D6(void);
+@@ -13598,54 +13599,54 @@
  void sub_002A57E0(void);
  void sub_002A58F7(void);
  void sub_002A5939(void);
@@ -267,7 +274,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002A6353(void);
  void sub_002A63CE(void);
  void sub_002A63E3(void);
-@@ -13727,19 +13727,19 @@ void sub_002A6451(void);
+@@ -13655,19 +13656,19 @@
  void sub_002A645C(void);
  void sub_002A650B(void);
  void sub_002A66B4(void);
@@ -291,7 +298,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002A6BBF(void);
  void sub_002A6BD1(void);
  void sub_002A6C53(void);
-@@ -13747,10 +13747,10 @@ void sub_002A6D10(void);
+@@ -13675,10 +13676,10 @@
  void sub_002A6D13(void);
  void sub_002A6D1C(void);
  void sub_002A6D6E(void);
@@ -306,7 +313,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002A6F88(void);
  void sub_002A770F(void);
  void sub_002A77B1(void);
-@@ -13761,90 +13761,90 @@ void sub_002A77F6(void);
+@@ -13689,90 +13690,90 @@
  void sub_002A77FC(void);
  void sub_002A784C(void);
  void sub_002A7855(void);
@@ -429,7 +436,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002AA570(void);
  void sub_002AA5A1(void);
  void sub_002AA5BE(void);
-@@ -13857,50 +13857,50 @@ void sub_002AA8A7(void);
+@@ -13785,50 +13786,50 @@
  void sub_002AA8AB(void);
  void sub_002AAA01(void);
  void sub_002AAA73(void);
@@ -493,7 +500,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002ABA40(void);
  void sub_002ABA43(void);
  void sub_002ABA4B(void);
-@@ -13910,32 +13910,32 @@ void sub_002ABB02(void);
+@@ -13838,32 +13839,32 @@
  void sub_002ABB05(void);
  void sub_002ABB0D(void);
  void sub_002ABB1B(void);
@@ -540,7 +547,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002AC36D(void);
  void sub_002AC383(void);
  void sub_002AC3AE(void);
-@@ -13943,17 +13943,17 @@ void sub_002AC4BD(void);
+@@ -13871,17 +13872,17 @@
  void sub_002AC5D5(void);
  void sub_002AC5DE(void);
  void sub_002AC606(void);
@@ -564,7 +571,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002AC888(void);
  void sub_002AC92E(void);
  void sub_002AC934(void);
-@@ -13967,7 +13967,7 @@ void sub_002AC9D7(void);
+@@ -13895,7 +13896,7 @@
  void sub_002ACE4E(void);
  void sub_002ACEBA(void);
  void sub_002ACEF1(void);
@@ -573,7 +580,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002AD1CC(void);
  void sub_002AD1DC(void);
  void sub_002AD1EC(void);
-@@ -13986,17 +13986,17 @@ void sub_002AD4D4(void);
+@@ -13914,17 +13915,17 @@
  void sub_002AD4EF(void);
  void sub_002AD50A(void);
  void sub_002AD521(void);
@@ -597,7 +604,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002ADF10(void);
  void sub_002ADF4B(void);
  void sub_002ADF8D(void);
-@@ -14177,7 +14177,7 @@ void sub_002BAC30(void);
+@@ -14105,7 +14106,7 @@
  void sub_002BACC0(void);
  void sub_002BBCD0(void);
  void sub_002BBD30(void);
@@ -606,7 +613,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002BBF61(void);
  void sub_002BBF99(void);
  void sub_002BC0EF(void);
-@@ -14189,8 +14189,8 @@ void sub_002BC338(void);
+@@ -14117,8 +14118,8 @@
  void sub_002BC33E(void);
  void sub_002BC344(void);
  void sub_002BC34A(void);
@@ -617,15 +624,7 @@ index 2ca03b8..2c4cfe6 100644
  void sub_002BC510(void);
  void sub_002BC530(void);
  void sub_002BC550(void);
-@@ -17526,6 +17526,7 @@ void sub_00356E5F(void);
- void sub_00361756(void);
- void sub_00361766(void);
- void sub_004D1820(void);
-+void sub_0219CBAF(void);
- void sub_20166EAE(void);
- void sub_27124B90(void);
- void sub_8555856A(void);
-@@ -17534,4 +17535,6 @@ void sub_E9E9ED76(void);
+@@ -17426,4 +17427,6 @@
  void sub_EA16ED7E(void);
  void sub_EA25ED86(void);
  
