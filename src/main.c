@@ -341,6 +341,18 @@ int ghost_disable_timed_watchdog(void)
     return 1;
 }
 
+int ghost_configure_memory_defaults(void)
+{
+    if (!getenv("RECOMP_HEAP_RECLAIM") &&
+        _putenv_s("RECOMP_HEAP_RECLAIM", "1") != 0) {
+        fprintf(stderr, "[BOOT] failed to configure memory reclamation\n");
+        return 0;
+    }
+    fprintf(stderr, "[BOOT] memory reclamation RECOMP_HEAP_RECLAIM=%s\n",
+            getenv("RECOMP_HEAP_RECLAIM"));
+    return 1;
+}
+
 int ghost_configure_rendering_defaults(void)
 {
     static const struct { const char *name, *value; } defaults[] = {
@@ -399,7 +411,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
             return 1;
         }
     }
-    if (!ghost_configure_event_defaults() || !ghost_configure_rendering_defaults()) return 1;
+    if (!ghost_configure_memory_defaults() ||
+        !ghost_configure_event_defaults() || !ghost_configure_rendering_defaults()) return 1;
     if (!getenv("RECOMP_USB"))
         _putenv_s("RECOMP_USB", "1");
     if (!getenv("RECOMP_USB_NDP"))
