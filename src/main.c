@@ -320,6 +320,35 @@ static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
 
 /* ── WinMain ───────────────────────────────────────────────── */
 
+int ghost_configure_rendering_defaults(void)
+{
+    static const struct { const char *name, *value; } defaults[] = {
+        {"RECOMP_NV2A_GPU_RESIDENT", "1"},
+        {"RECOMP_NV2A_GPU_RESIDENT_IDLE", "1"},
+        {"RECOMP_NV2A_GPU_ASYNC_IDLE", "1"},
+        {"RECOMP_NV2A_STREAM_COALESCE", "1"},
+        {"RECOMP_NV2A_VERTEX_PACKED", "1"},
+        {"RECOMP_NV2A_VERTEX_PREPARED", "1"},
+        {"RECOMP_NV2A_TEXTURE_LOOKASIDE", "1"},
+        {"RECOMP_NV2A_COMPATIBLE_TARGETS", "1"},
+        {"RECOMP_NV2A_GPU_ALIAS_COPIES", "1"},
+        {"RECOMP_NV2A_KNOWN_CLEARS", "1"},
+        {"RECOMP_NV2A_NATIVE_CLEARS", "1"},
+        {"RECOMP_FB_SCALE", "1"},
+        {"RECOMP_FB_D3D11", "0"}
+    };
+    for (size_t i = 0; i < sizeof(defaults) / sizeof(defaults[0]); i++) {
+        if (!getenv(defaults[i].name) &&
+            _putenv_s(defaults[i].name, defaults[i].value) != 0) {
+            fprintf(stderr, "[BOOT] failed to configure %s\n", defaults[i].name);
+            return 0;
+        }
+        fprintf(stderr, "[BOOT] rendering option %s=%s\n",
+                defaults[i].name, getenv(defaults[i].name));
+    }
+    return 1;
+}
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow)
 {
@@ -349,27 +378,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
             return 1;
         }
     }
-    if (!getenv("RECOMP_NV2A_STREAM_COALESCE") &&
-        _putenv_s("RECOMP_NV2A_STREAM_COALESCE", "1") != 0) {
-        fprintf(stderr, "[BOOT] failed to configure stream coalescing default\n");
-        return 1;
-    }
-    {
-        static const char *const rendering_options[] = {
-            "RECOMP_NV2A_GPU_RESIDENT",
-            "RECOMP_NV2A_GPU_RESIDENT_IDLE",
-            "RECOMP_NV2A_GPU_ASYNC_IDLE",
-            "RECOMP_NV2A_STREAM_COALESCE"
-        };
-        for (size_t i = 0; i < sizeof(rendering_options) / sizeof(rendering_options[0]); i++) {
-            const char *value = getenv(rendering_options[i]);
-            BOOL enabled = value ? *value && strcmp(value, "0") != 0 :
-                           strcmp(rendering_options[i], "RECOMP_NV2A_GPU_ASYNC_IDLE") == 0;
-            fprintf(stderr, "[BOOT] rendering option %s=%s (%s)\n",
-                    rendering_options[i], value ? value : "<unset>",
-                    enabled ? "enabled" : "disabled");
-        }
-    }
+    if (!ghost_configure_rendering_defaults()) return 1;
     if (!getenv("RECOMP_USB"))
         _putenv_s("RECOMP_USB", "1");
     if (!getenv("RECOMP_USB_NDP"))
