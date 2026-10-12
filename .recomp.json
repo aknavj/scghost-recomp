@@ -1,0 +1,15 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "StarCraft: Ghost",
+  "system": "Xbox",
+  "type": "recomp",
+  "project": "StarCraft: Ghost Xbox Recomp",
+  "status": "in-progress",
+  "targets": ["Windows"],
+  "toolchain": "Xboxrecomp",
+  "approach": "Static recompilation of x86 game code to C with the XboxRecomp runtime and Direct3D 11 rendering",
+  "maintainers": [{ "name": "aknavj", "link": "https://github.com/aknavj" }],
+  "links": [{ "label": "XboxRecomp toolkit (impl-scghost branch)", "url": "https://github.com/aknavj/xboxrecomp/tree/impl-scghost" }],
+  "help": ["Texture and shader support", "Audio DSP effects and crackles", "Rendering stability and performance"],
+  "notes": "Menu rendering and controller navigation are verified. Videos and gameplay run, but renderer failures still cause exits; texture and shader support and audio DSP effects remain incomplete. Sustained optimized performance is unverified. Requires the XboxRecomp impl-scghost branch and legally obtained game files, which are not supplied."
+}
