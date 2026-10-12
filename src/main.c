@@ -227,10 +227,9 @@ extern MCPXAPUState *g_apu_state;
 extern bool apu_hook_handle_mmio(PCONTEXT ctx, uintptr_t fault_addr,
                                  uint32_t fault_xbox_va, int is_write);
 
-/* Match the modeled main/VP MMIO span in MemoryLayoutInit. GP/EP scratch
- * memory and AC'97 remain mapped for bulk copies and codec status. */
-#define APU_TRAP_BASE 0xFE800000u
-#define APU_TRAP_END  0xFE830000u
+/* The DSP engine also traps GP/EP memory; the stub leaves it mapped. */
+#define APU_TRAP_BASE XBOX_MCPX_BASE
+#define APU_TRAP_END  XBOX_MCPX_APU_MMIO_END
 
 static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
 {
@@ -320,6 +319,40 @@ static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
 
 /* ── WinMain ───────────────────────────────────────────────── */
 
+int ghost_configure_event_defaults(void)
+{
+    /* D3D initializes its fence events directly in guest memory. */
+    if (!getenv("RECOMP_TITLE_KEVENTS") &&
+        _putenv_s("RECOMP_TITLE_KEVENTS", "1") != 0) {
+        fprintf(stderr, "[BOOT] failed to configure guest-created event support\n");
+        return 0;
+    }
+    fprintf(stderr, "[BOOT] guest-created events RECOMP_TITLE_KEVENTS=%s\n",
+            getenv("RECOMP_TITLE_KEVENTS"));
+    return 1;
+}
+
+int ghost_disable_timed_watchdog(void)
+{
+    if (_putenv_s("RECOMP_WATCHDOG_SECS", "0") != 0) {
+        fprintf(stderr, "[BOOT] failed to disable timed watchdog\n");
+        return 0;
+    }
+    return 1;
+}
+
+int ghost_configure_memory_defaults(void)
+{
+    if (!getenv("RECOMP_HEAP_RECLAIM") &&
+        _putenv_s("RECOMP_HEAP_RECLAIM", "1") != 0) {
+        fprintf(stderr, "[BOOT] failed to configure memory reclamation\n");
+        return 0;
+    }
+    fprintf(stderr, "[BOOT] memory reclamation RECOMP_HEAP_RECLAIM=%s\n",
+            getenv("RECOMP_HEAP_RECLAIM"));
+    return 1;
+}
+
 int ghost_configure_rendering_defaults(void)
 {
     static const struct { const char *name, *value; } defaults[] = {
@@ -378,7 +411,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
             return 1;
         }
     }
-    if (!ghost_configure_rendering_defaults()) return 1;
+    if (!ghost_configure_memory_defaults() ||
+        !ghost_configure_event_defaults() || !ghost_configure_rendering_defaults()) return 1;
     if (!getenv("RECOMP_USB"))
         _putenv_s("RECOMP_USB", "1");
     if (!getenv("RECOMP_USB_NDP"))
@@ -532,14 +566,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         fprintf(stderr, "[BOOT] flat dispatch unavailable; "
                         "indirect calls will use the binary search\n");
 
-    /* Arm the hang watchdog. Does nothing unless RECOMP_WATCHDOG_SECS is set,
-     * and must be called from this thread -- the guest registers it samples are
-     * thread-local, so it has to be handed the copies belonging to the thread
-     * that runs guest code.
-     *
-     * Not optional boilerplate: without this call RECOMP_WATCHDOG_SECS is
-     * silently inert, and the one diagnostic that tells a hang from slowness
-     * does nothing while appearing to be set. */
+    /* Keep optional stall samples without a timed process exit. */
+    if (!ghost_disable_timed_watchdog()) return EXIT_FAILURE;
     xbox_WatchdogStart();
 
     /* Step 7: Call the recompiled entry point */
