@@ -14,12 +14,14 @@ Original x86 game code is translated to C and linked with the XboxRecomp runtime
 | Loading screen | Tested | Briefings and mission loads complete. |
 | Gameplay | Working | Tested missions, reloads and level changes work. |
 | Mission transitions | Tested | Repeated level changes, reload and return to the menu pass. |
-| Audio | Working | Intro and gameplay sound work; XACT teardown is fixed. |
+| Audio | Working with issues | Intro and gameplay sound work; disappearing cues and crackle during extended play still need validation. |
 | Rendering | Working | Native GPU rendering works; fence corruption and cache churn are fixed. |
 | Performance | Tested | No progressive FPS loss across repeated mission changes. |
 
 Most reported issues are resolved. Full mission coverage, additional save/load
 paths and audio/visual fidelity still need validation. FPS remains scene-dependent.
+Audio-worker initialization also requires the toolkit's suspended-thread creation
+fix; starting these workers early can produce invalid mutex releases.
 
 ## Requirements
 
@@ -176,7 +178,7 @@ does not fix a stale lookup index.
 
 ## Acknowledgments
 
-See [Contributors](Contributors.md) for contributor credits.
+See [Contributors](CONTRIBUTORS.md) for contributor credits.
 
 ## Documentation
 
